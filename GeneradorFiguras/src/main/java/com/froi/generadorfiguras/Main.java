@@ -7,7 +7,9 @@ package com.froi.generadorfiguras;
 
 import com.froi.generadorfiguras.estructuras.AVLTree;
 import com.froi.generadorfiguras.estructuras.ArbolAVL;
+import com.froi.generadorfiguras.estructuras.MatrizDispersa;
 import com.froi.generadorfiguras.nodos.NodoAVL;
+import com.froi.generadorfiguras.nodos.NodoMatriz;
 
 /**
  *
@@ -16,6 +18,7 @@ import com.froi.generadorfiguras.nodos.NodoAVL;
 public class Main {
     public static void main(String args[]) {
         ArbolAVL arbol = new ArbolAVL();
+        MatrizDispersa matriz = new MatrizDispersa();
 //        arbol.insertar(new NodoAVL("id1"));
 //        arbol.insertar(new NodoAVL("id2"));
 //        arbol.insertar(new NodoAVL("id3"));
@@ -47,7 +50,6 @@ public class Main {
         arbol.insertar(new NodoAVL("56"));
         arbol.insertar(new NodoAVL("57"));
         arbol.insertar(new NodoAVL("58"));
-        arbol.eliminar("30");
         
 //        arbol.insertar(new NodoAVL("2"));
 //        arbol.insertar(new NodoAVL("5"));
@@ -61,5 +63,15 @@ public class Main {
         System.out.println("\n\n");
         System.out.println("Tamaño: " + arbol.getTamaño());
         arbol.imprimirArbol();
+        
+        
+        matriz.insertar(2, 2, "hola");
+        matriz.insertar(4,4,"adios");
+        
+        NodoMatriz h1 = matriz.busqueda(2, 2);
+        NodoMatriz h2 = matriz.busqueda(4, 4);
+        System.out.println("en 2,2: " + h1.getInfo());
+        System.out.println("en 4,4: " + h2.getInfo());
+        
     }
 }
