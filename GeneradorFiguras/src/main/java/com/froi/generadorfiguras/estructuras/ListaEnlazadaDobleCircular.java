@@ -45,8 +45,9 @@ public class ListaEnlazadaDobleCircular {
             }
         } else {
             NodoListaDobleC aux = primero;
-            while(aux.getSiguiente() != primero) {
-                if(identificador.compareTo(aux.getIdentificador()) > 0 && identificador.compareTo(aux.getSiguiente().getIdentificador()) < 0) {
+            while(true) {
+                if((identificador.compareTo(aux.getIdentificador()) > 0 && identificador.compareTo(aux.getSiguiente().getIdentificador()) < 0) || (aux == ultimo)) {
+                    System.out.println("entró a la condición");
                     if(aux == primero) {
                         primero.setAnterior(nuevo);
                         nuevo.setSiguiente(primero);
@@ -70,8 +71,19 @@ public class ListaEnlazadaDobleCircular {
                     }
                 }
                 aux = aux.getSiguiente();
+                System.out.println(aux.getSiguiente().getIdentificador());
             }
         }
         tamaño++;
+    }
+    
+    public void imprimir() {
+        if(primero != null) {
+            NodoListaDobleC aux = primero;
+            do {
+                System.out.println("Nodo: " + aux.getIdentificador());
+                aux = aux.getSiguiente();
+            }while(aux != primero);
+        }
     }
 }

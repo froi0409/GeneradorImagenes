@@ -36,6 +36,11 @@ public class ListaDoblementeEnlazada {
         }
     }
     
+    /**
+     * Permite buscar el nodo que contenga alguna capa
+     * @param identificador Identificador de la capa
+     * @return Nodo de capa
+     */
     public NodoAVL buscar(String identificador) {
         if(primero != null) {
             NodoListaDoble aux = primero;

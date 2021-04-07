@@ -6,6 +6,7 @@
 package com.froi.generadorfiguras;
 
 import com.froi.generadorfiguras.estructuras.ArbolAVL;
+import com.froi.generadorfiguras.estructuras.ListaEnlazadaDobleCircular;
 import com.froi.generadorfiguras.estructuras.MatrizDispersa;
 import com.froi.generadorfiguras.nodos.NodoAVL;
 import com.froi.generadorfiguras.nodos.NodoMatriz;
@@ -20,6 +21,7 @@ public class Main {
         ArbolAVL arbolCapas = new ArbolAVL();
         ArbolAVL usuarios = new ArbolAVL();
         MatrizDispersa matriz = new MatrizDispersa();
+        
 //        arbol.insertar(new NodoAVL("id1"));
 //        arbol.insertar(new NodoAVL("id2"));
 //        arbol.insertar(new NodoAVL("id3"));
@@ -74,6 +76,19 @@ public class Main {
         System.out.println("en 4,4: " + h2.getInfo());
         System.out.println("Cantidad de filas: " + matriz.getTotalFilas());
         System.out.println("Cantidad de Columnas: " + matriz.getTotalColumnas());
+        
+    
+        ListaEnlazadaDobleCircular listaP = new ListaEnlazadaDobleCircular();
+        listaP.insertar("1");
+        listaP.insertar("2");
+        listaP.insertar("3");
+        listaP.insertar("6");
+        listaP.insertar("9");
+        listaP.insertar("4");
+        listaP.insertar("7");
+        listaP.insertar("5");
+        System.out.println("\n\nListaDobleCirc: ");
+        listaP.imprimir();
         
     }
 }
