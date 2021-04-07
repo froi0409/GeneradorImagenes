@@ -13,8 +13,8 @@ import com.froi.generadorfiguras.nodos.NodoMatriz;
  */
 public class MatrizDispersa {
     private int totalNodos;
-    public int totalFilas;
-    public int totalColumnas;
+    private int totalFilas;
+    private int totalColumnas;
     private NodoMatriz inicio;
 
     public MatrizDispersa() {
@@ -213,6 +213,18 @@ public class MatrizDispersa {
             return insertarColumna(columna);
         }
         return null;
+    }
+
+    public int getTotalNodos() {
+        return totalNodos;
+    }
+
+    public int getTotalFilas() {
+        return totalFilas;
+    }
+
+    public int getTotalColumnas() {
+        return totalColumnas;
     }
     
 }

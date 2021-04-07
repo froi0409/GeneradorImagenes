@@ -11,12 +11,19 @@ package com.froi.generadorfiguras.nodos;
  */
 public class NodoAVL {
     private String identificador;
+    private Object contenido;
     private NodoAVL izquierdo;
     private NodoAVL derecha;
     private int factorEquilibrio;
     
     public NodoAVL(String identificador) {
         this.identificador = identificador;
+        this.izquierdo = null;
+        this.derecha = null;
+    }
+    public NodoAVL(String identificador, Object contenido) {
+        this.identificador = identificador;
+        this.contenido = contenido;
         this.izquierdo = null;
         this.derecha = null;
     }
@@ -52,6 +59,9 @@ public class NodoAVL {
     public void setFactorEquilibrio(int factorEquilibrio) {
         this.factorEquilibrio = factorEquilibrio;
     }
-    
+
+    public Object getContenido() {
+        return contenido;
+    }
     
 }

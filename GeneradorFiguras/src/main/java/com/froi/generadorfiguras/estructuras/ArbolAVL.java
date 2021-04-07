@@ -162,14 +162,14 @@ public class ArbolAVL {
         if(raiz == null) {
             return null;
         } 
-        if(parametro.compareTo(raiz.getIdentificador()) == 0) {
-            return raiz;
+        if(parametro.compareTo(nodo.getIdentificador()) == 0) {
+            return nodo;
         } 
-        if(parametro.compareTo(raiz.getIdentificador()) > 0) {
-            return buscar(parametro, raiz.getDerecha());
+        if(parametro.compareTo(nodo.getIdentificador()) > 0) {
+            return buscar(parametro, nodo.getDerecha());
         }
-        if(parametro.compareTo(raiz.getIdentificador()) < 0) {
-            return buscar(parametro, raiz.getIzquierdo());
+        if(parametro.compareTo(nodo.getIdentificador()) < 0) {
+            return buscar(parametro, nodo.getIzquierdo());
         }
         return null;
     }
