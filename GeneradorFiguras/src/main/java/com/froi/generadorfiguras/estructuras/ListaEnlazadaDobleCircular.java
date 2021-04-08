@@ -22,8 +22,8 @@ public class ListaEnlazadaDobleCircular {
         this.tamaño = 0;
     }
     
-    public void insertar(String identificador) {
-        NodoListaDobleC nuevo = new NodoListaDobleC(identificador);
+    public void insertar(String identificador, ListaDoblementeEnlazada listaCapas) {
+        NodoListaDobleC nuevo = new NodoListaDobleC(identificador, listaCapas);
         if(primero == null) {
             primero = nuevo;
             ultimo = nuevo;
@@ -46,8 +46,10 @@ public class ListaEnlazadaDobleCircular {
         } else {
             NodoListaDobleC aux = primero;
             while(true) {
+                if(aux.getIdentificador().equals(identificador)) {
+                    throw new RuntimeException("NodoDuplicado");
+                }
                 if((identificador.compareTo(aux.getIdentificador()) > 0 && identificador.compareTo(aux.getSiguiente().getIdentificador()) < 0) || (aux == ultimo)) {
-                    System.out.println("entró a la condición");
                     if(aux == primero) {
                         primero.setAnterior(nuevo);
                         nuevo.setSiguiente(primero);

@@ -7,7 +7,10 @@ package com.froi.generadorfiguras.manejadores;
 
 import com.froi.generadorfiguras.analizadores.capas.CapasLexer;
 import com.froi.generadorfiguras.analizadores.capas.ParserCapas;
+import com.froi.generadorfiguras.analizadores.imagenes.ImagenesLexer;
+import com.froi.generadorfiguras.analizadores.imagenes.ParserImagenes;
 import com.froi.generadorfiguras.estructuras.ArbolAVL;
+import com.froi.generadorfiguras.estructuras.ListaEnlazadaDobleCircular;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -33,8 +36,16 @@ public class ManejadorArchivos {
         arbolCapas.imprimirArbol();
     }
     
-    public void manejarArchivoIm(File archivoEntrada) {
-        
+    public void manejarArchivoIm(File archivoEntrada, ListaEnlazadaDobleCircular listaImagenes, ArbolAVL arbolCapas) {
+        String codigo = getCadenaArchivo(archivoEntrada);
+        StringReader reader = new StringReader(codigo);
+        ImagenesLexer lexer = new ImagenesLexer(reader);
+        ParserImagenes parser = new ParserImagenes(lexer, listaImagenes, arbolCapas);
+        try {
+            parser.parse();
+        } catch (Exception e) {
+            System.out.println("Error al analizar el codigo de imagenes: " + e.getMessage());
+        }
     }
     
     public void manejarArchivoUsr(File archivoEntrada) {

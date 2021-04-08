@@ -201,7 +201,7 @@ public class VentanaInicial extends javax.swing.JFrame {
             File archivo = fileChooser.getSelectedFile();
             txtImagenes.setText("Se seleccionó el archivo a importar\n");
             //Enviamos a analizar el archivo a importar
-            manejadorArchivos.manejarArchivoIm(archivo);
+            manejadorArchivos.manejarArchivoIm(archivo, manejadorPrincipal.getListaImagenes(), manejadorPrincipal.getArbolCapas());
         } else {
             txtImagenes.setText("Error al seleccionar el archivo a importar\n");
         }

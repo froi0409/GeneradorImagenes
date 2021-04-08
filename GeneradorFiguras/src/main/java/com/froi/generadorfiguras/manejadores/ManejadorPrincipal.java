@@ -6,6 +6,7 @@
 package com.froi.generadorfiguras.manejadores;
 
 import com.froi.generadorfiguras.estructuras.ArbolAVL;
+import com.froi.generadorfiguras.estructuras.ListaEnlazadaDobleCircular;
 
 /**
  *
@@ -13,9 +14,11 @@ import com.froi.generadorfiguras.estructuras.ArbolAVL;
  */
 public class ManejadorPrincipal {
     private ArbolAVL arbolCapas;
+    private ListaEnlazadaDobleCircular listaImagenes;
     
     public ManejadorPrincipal() {
         this.arbolCapas = new ArbolAVL();
+        this.listaImagenes = new ListaEnlazadaDobleCircular();
     }
 
     public ArbolAVL getArbolCapas() {
@@ -24,6 +27,14 @@ public class ManejadorPrincipal {
 
     public void setArbolCapas(ArbolAVL arbolCapas) {
         this.arbolCapas = arbolCapas;
+    }
+
+    public ListaEnlazadaDobleCircular getListaImagenes() {
+        return listaImagenes;
+    }
+
+    public void setListaImagenes(ListaEnlazadaDobleCircular listaImagenes) {
+        this.listaImagenes = listaImagenes;
     }
     
 }

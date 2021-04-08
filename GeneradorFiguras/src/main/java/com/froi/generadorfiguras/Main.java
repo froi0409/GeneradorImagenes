@@ -78,19 +78,6 @@ public class Main {
         System.out.println("Cantidad de filas: " + matriz.getTotalFilas());
         System.out.println("Cantidad de Columnas: " + matriz.getTotalColumnas());
         
-    
-        ListaEnlazadaDobleCircular listaP = new ListaEnlazadaDobleCircular();
-        listaP.insertar("1");
-        listaP.insertar("2");
-        listaP.insertar("3");
-        listaP.insertar("6");
-        listaP.insertar("9");
-        listaP.insertar("4");
-        listaP.insertar("7");
-        listaP.insertar("5");
-        System.out.println("\n\nListaDobleCirc: ");
-        listaP.imprimir();
-        
         /*PRINCIPAL*/
         VentanaInicial ventana = new VentanaInicial();
         ventana.setVisible(true);

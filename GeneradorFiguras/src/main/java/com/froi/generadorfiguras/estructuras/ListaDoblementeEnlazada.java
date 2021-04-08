@@ -34,6 +34,7 @@ public class ListaDoblementeEnlazada {
             nuevo.setAnterior(aux);
             
         }
+        tamaño++;
     }
     
     /**
@@ -52,6 +53,16 @@ public class ListaDoblementeEnlazada {
             }
         }
         return null;
+    }
+    
+    public void imprimirLista() {
+        if(primero != null) {
+            NodoListaDoble aux = primero;
+            while(aux != null) {
+                System.out.println("nodo: " + aux.getNodoCapa().getIdentificador());
+                aux = aux.getSiguiente();
+            }
+        }
     }
     
 }

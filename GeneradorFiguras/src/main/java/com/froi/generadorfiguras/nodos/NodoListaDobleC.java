@@ -24,6 +24,12 @@ public class NodoListaDobleC {
         this.listaCapas = new ListaDoblementeEnlazada();
         
     }
+    public NodoListaDobleC(String identificador, ListaDoblementeEnlazada listaCapas) {
+        this.identificador = identificador;
+        this.siguiente = null;
+        this.anterior = null;
+        this.listaCapas = listaCapas;
+    }
 
     public String getIdentificador() {
         return identificador;
