@@ -1,0 +1,75 @@
+package com.froi.generadorfiguras.analizadores.capas;
+
+import com.froi.generadorfiguras.estructuras.ArbolAVL;
+import com.froi.generadorfiguras.estructuras.MatrizDispersa;
+import com.froi.generadorfiguras.nodos.NodoAVL;
+import com.froi.generadorfiguras.tokens.TokenMatriz;
+import java_cup.runtime.*;
+
+class ParserCapas;
+
+parser code {:
+
+    private ArbolAVL arbolCapas;
+
+    public ParserCapas(CapasLexer lexer, ArbolAVL arbolCapas) {
+        super(lexer);
+        this.arbolCapas = arbolCapas;
+    }
+    public void report_error(String message, Object info) {
+        System.out.println("reporterror");
+    }
+    public void report_fatal_error(String message, Object info) {
+        System.out.println("reportfatal " + info);
+    }
+    @Override
+    public void syntax_error(Symbol s) {
+        System.out.println("linea: " + s.left + "   columna: " + s.right);
+    }
+    protected int error_sync_size() {
+        return 1;
+    }
+
+:}
+
+terminal ALFANUMERICO, NUMERO, LLAVE_A, LLAVE_C, PUNTO_COMA, COMA, COLOR;
+
+non terminal inicio, identificador, declaracion;
+non terminal MatrizDispersa inicio_opciones, datos;
+non terminal TokenMatriz datos_opciones;
+
+start with inicio;
+
+inicio ::=  identificador:id inicio_opciones:matriz inicio
+            {:
+                NodoAVL nuevoNodo = new NodoAVL(id.toString(), matriz);
+                arbolCapas.insertar(nuevoNodo);
+            :}
+            |
+            ;
+
+inicio_opciones ::= LLAVE_A datos:datos LLAVE_C
+                    {:
+                        RESULT = datos;
+                    :}
+                    ;
+
+datos ::=   datos_opciones:tokenM datos:matriz 
+            {:
+                System.out.println("Token obtenido: " + tokenM.getFila() + " , " + tokenM.getColumna() + " , " + tokenM.getColor());
+                matriz.insertar(tokenM.getFila(), tokenM.getColumna(), tokenM.getColor());
+                RESULT = matriz;
+            :}
+            | /*Datos de Matriz vacios*/  
+            {:RESULT = new MatrizDispersa();:}
+            ;
+
+datos_opciones ::=  NUMERO:fila COMA NUMERO:columna COMA COLOR:color PUNTO_COMA 
+{:
+    RESULT = new TokenMatriz(Integer.parseInt(fila.toString()), Integer.parseInt(columna.toString()), color.toString());
+:}
+                    ;
+
+identificador ::=   ALFANUMERICO:param  {:RESULT = param;:}
+                    | NUMERO:param      {:RESULT = param;:}
+                    ;

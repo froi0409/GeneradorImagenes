@@ -15,7 +15,25 @@ public class Usuario {
     private String identificador;
     private ListaDoblementeEnlazada listaImagenes;
     
-    public Usuario() {
+    public Usuario(String identificador) {
         this.listaImagenes = new ListaDoblementeEnlazada();
+        this.identificador = identificador;
     }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
+    }
+
+    public ListaDoblementeEnlazada getListaImagenes() {
+        return listaImagenes;
+    }
+
+    public void setListaImagenes(ListaDoblementeEnlazada listaImagenes) {
+        this.listaImagenes = listaImagenes;
+    }
+    
 }

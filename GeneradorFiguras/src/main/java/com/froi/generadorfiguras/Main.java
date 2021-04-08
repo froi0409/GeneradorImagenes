@@ -8,6 +8,7 @@ package com.froi.generadorfiguras;
 import com.froi.generadorfiguras.estructuras.ArbolAVL;
 import com.froi.generadorfiguras.estructuras.ListaEnlazadaDobleCircular;
 import com.froi.generadorfiguras.estructuras.MatrizDispersa;
+import com.froi.generadorfiguras.frontend.VentanaInicial;
 import com.froi.generadorfiguras.nodos.NodoAVL;
 import com.froi.generadorfiguras.nodos.NodoMatriz;
 
@@ -89,6 +90,10 @@ public class Main {
         listaP.insertar("5");
         System.out.println("\n\nListaDobleCirc: ");
         listaP.imprimir();
+        
+        /*PRINCIPAL*/
+        VentanaInicial ventana = new VentanaInicial();
+        ventana.setVisible(true);
         
     }
 }
