@@ -45,17 +45,17 @@ public class ParserCapas extends java_cup.runtime.lr_parser {
   /** Parse-action table. */
   protected static final short[][] _action_table = 
     unpackFromStrings(new String[] {
-    "\000\023\000\010\002\uffff\004\006\005\004\001\002\000" +
-    "\004\006\ufff9\001\002\000\004\006\012\001\002\000\004" +
-    "\006\ufffa\001\002\000\004\002\010\001\002\000\004\002" +
-    "\001\001\002\000\010\002\uffff\004\006\005\004\001\002" +
-    "\000\006\005\013\007\ufffc\001\002\000\004\011\020\001" +
-    "\002\000\004\007\017\001\002\000\006\005\013\007\ufffc" +
-    "\001\002\000\004\007\ufffd\001\002\000\010\002\ufffe\004" +
-    "\ufffe\005\ufffe\001\002\000\004\005\021\001\002\000\004" +
-    "\011\022\001\002\000\004\012\023\001\002\000\004\010" +
-    "\024\001\002\000\006\005\ufffb\007\ufffb\001\002\000\004" +
-    "\002\000\001\002" });
+    "\000\022\000\010\002\uffff\004\uffff\005\uffff\001\002\000" +
+    "\010\002\010\004\007\005\005\001\002\000\004\006\ufff9" +
+    "\001\002\000\004\006\012\001\002\000\004\006\ufffa\001" +
+    "\002\000\004\002\001\001\002\000\010\002\000\004\000" +
+    "\005\000\001\002\000\006\005\013\007\ufffc\001\002\000" +
+    "\004\011\020\001\002\000\004\007\017\001\002\000\006" +
+    "\005\013\007\ufffc\001\002\000\004\007\ufffd\001\002\000" +
+    "\010\002\ufffe\004\ufffe\005\ufffe\001\002\000\004\005\021" +
+    "\001\002\000\004\011\022\001\002\000\004\012\023\001" +
+    "\002\000\004\010\024\001\002\000\006\005\ufffb\007\ufffb" +
+    "\001\002" });
 
   /** Access to parse-action table. */
   public short[][] action_table() {return _action_table;}
@@ -63,14 +63,13 @@ public class ParserCapas extends java_cup.runtime.lr_parser {
   /** <code>reduce_goto</code> table. */
   protected static final short[][] _reduce_table = 
     unpackFromStrings(new String[] {
-    "\000\023\000\006\002\006\003\004\001\001\000\002\001" +
-    "\001\000\004\005\010\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\006\002\024\003\004\001" +
-    "\001\000\006\006\013\007\014\001\001\000\002\001\001" +
-    "\000\002\001\001\000\006\006\015\007\014\001\001\000" +
+    "\000\022\000\004\002\003\001\001\000\004\003\005\001" +
+    "\001\000\002\001\001\000\004\005\010\001\001\000\002" +
+    "\001\001\000\002\001\001\000\002\001\001\000\006\006" +
+    "\013\007\014\001\001\000\002\001\001\000\002\001\001" +
+    "\000\006\006\015\007\014\001\001\000\002\001\001\000" +
     "\002\001\001\000\002\001\001\000\002\001\001\000\002" +
-    "\001\001\000\002\001\001\000\002\001\001\000\002\001" +
-    "\001\000\002\001\001" });
+    "\001\001\000\002\001\001\000\002\001\001" });
 
   /** Access to <code>reduce_goto</code> table. */
   public short[][] reduce_table() {return _reduce_table;}
@@ -171,15 +170,15 @@ class CUP$ParserCapas$actions {
           return CUP$ParserCapas$result;
 
           /*. . . . . . . . . . . . . . . . . . . .*/
-          case 1: // inicio ::= identificador inicio_opciones inicio 
+          case 1: // inicio ::= inicio identificador inicio_opciones 
             {
               Object RESULT =null;
-		int idleft = ((java_cup.runtime.Symbol)CUP$ParserCapas$stack.elementAt(CUP$ParserCapas$top-2)).left;
-		int idright = ((java_cup.runtime.Symbol)CUP$ParserCapas$stack.elementAt(CUP$ParserCapas$top-2)).right;
-		Object id = (Object)((java_cup.runtime.Symbol) CUP$ParserCapas$stack.elementAt(CUP$ParserCapas$top-2)).value;
-		int matrizleft = ((java_cup.runtime.Symbol)CUP$ParserCapas$stack.elementAt(CUP$ParserCapas$top-1)).left;
-		int matrizright = ((java_cup.runtime.Symbol)CUP$ParserCapas$stack.elementAt(CUP$ParserCapas$top-1)).right;
-		MatrizDispersa matriz = (MatrizDispersa)((java_cup.runtime.Symbol) CUP$ParserCapas$stack.elementAt(CUP$ParserCapas$top-1)).value;
+		int idleft = ((java_cup.runtime.Symbol)CUP$ParserCapas$stack.elementAt(CUP$ParserCapas$top-1)).left;
+		int idright = ((java_cup.runtime.Symbol)CUP$ParserCapas$stack.elementAt(CUP$ParserCapas$top-1)).right;
+		Object id = (Object)((java_cup.runtime.Symbol) CUP$ParserCapas$stack.elementAt(CUP$ParserCapas$top-1)).value;
+		int matrizleft = ((java_cup.runtime.Symbol)CUP$ParserCapas$stack.peek()).left;
+		int matrizright = ((java_cup.runtime.Symbol)CUP$ParserCapas$stack.peek()).right;
+		MatrizDispersa matriz = (MatrizDispersa)((java_cup.runtime.Symbol) CUP$ParserCapas$stack.peek()).value;
 		
                 NodoAVL nuevoNodo = new NodoAVL(id.toString(), matriz);
                 arbolCapas.insertar(nuevoNodo);
