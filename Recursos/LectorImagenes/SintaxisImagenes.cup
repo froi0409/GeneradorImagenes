@@ -1,0 +1,85 @@
+package com.froi.generadorfiguras.analizadores.imagenes;
+
+import com.froi.generadorfiguras.estructuras.ArbolAVL;
+import com.froi.generadorfiguras.estructuras.ListaDoblementeEnlazada;
+import com.froi.generadorfiguras.estructuras.ListaEnlazadaDobleCircular;
+import java_cup.runtime.*;
+
+class ParserImagenes;
+
+parser code {:
+
+    private ListaEnlazadaDobleCircular listaImagenes;
+    private ArbolAVL arbolCapas;
+
+    public ParserImagenes(ImagenesLexer lexer, ListaEnlazadaDobleCircular listaImagenes, ArbolAVL arbolCapas) {
+        super(lexer);
+        this.listaImagenes = listaImagenes;
+        this.arbolCapas = arbolCapas;
+    }
+
+    public void report_error(String message, Object info) {
+        System.out.println("reporterror");
+    }
+    public void report_fatal_error(String message, Object info) {
+        System.out.println("reportfatal " + info);
+    }
+    @Override
+    public void syntax_error(Symbol s) {
+        System.out.println("linea: " + s.left + "   columna: " + s.right);
+    }
+    protected int error_sync_size() {
+        return 1;
+    }
+
+:}
+
+terminal LLAVE_A, LLAVE_C, COMA, NUMERO, ALFANUMERICO;
+
+non terminal inicio, inicio_p, identificador;
+non terminal ListaDoblementeEnlazada capas;
+
+start with inicio;
+
+inicio ::=  inicio_p inicio
+            |
+            ;
+
+inicio_p ::=    identificador:id LLAVE_A capas:lista LLAVE_C
+                {:
+                    try {
+                        listaImagenes.insertar(id.toString(), lista);
+                        System.out.println("Se insertó la imagen: " + id.toString() + " y su lista es:");
+                                            
+                    } catch(RuntimeException e) {
+                        System.out.println("Error de imagen duplicada: " + e.getMessage());
+                    }
+                :}
+                ;
+
+capas ::=   capas:lista COMA identificador:id
+            {:
+                try {
+                    lista.insertar(arbolCapas.buscar(id.toString()));
+                    System.out.println("Se encontró la capa: " + id.toString());
+                } catch(Exception e) {
+                    System.out.println("Error al buscar nodo");
+                }
+                RESULT = lista;
+            :}
+            | capas:lista identificador:id
+            {:
+                try {
+                    lista.insertar(arbolCapas.buscar(id.toString()));
+                    System.out.println("Se encontró la capa: " + id.toString());
+                } catch(Exception e) {
+                    System.out.println("Error al buscar nodo");
+                }
+                RESULT = lista;
+            :}
+            | /*Datos de Capa vacia*/ {:RESULT = new ListaDoblementeEnlazada();:}
+            ;
+
+identificador ::=   ALFANUMERICO:param  {:RESULT=param;:}
+                    | NUMERO:param      {:RESULT=param;:}
+                    ;
