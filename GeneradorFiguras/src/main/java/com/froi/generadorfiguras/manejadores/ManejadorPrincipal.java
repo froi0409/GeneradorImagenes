@@ -15,10 +15,12 @@ import com.froi.generadorfiguras.estructuras.ListaEnlazadaDobleCircular;
 public class ManejadorPrincipal {
     private ArbolAVL arbolCapas;
     private ListaEnlazadaDobleCircular listaImagenes;
+    private ArbolAVL arbolUsuarios;
     
     public ManejadorPrincipal() {
         this.arbolCapas = new ArbolAVL();
         this.listaImagenes = new ListaEnlazadaDobleCircular();
+        this.arbolUsuarios = new ArbolAVL();
     }
 
     public ArbolAVL getArbolCapas() {
@@ -36,5 +38,14 @@ public class ManejadorPrincipal {
     public void setListaImagenes(ListaEnlazadaDobleCircular listaImagenes) {
         this.listaImagenes = listaImagenes;
     }
+
+    public ArbolAVL getArbolUsuarios() {
+        return arbolUsuarios;
+    }
+
+    public void setArbolUsuarios(ArbolAVL arbolUsuarios) {
+        this.arbolUsuarios = arbolUsuarios;
+    }
+    
     
 }

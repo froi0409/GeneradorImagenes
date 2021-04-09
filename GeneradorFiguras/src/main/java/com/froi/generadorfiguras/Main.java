@@ -81,6 +81,5 @@ public class Main {
         /*PRINCIPAL*/
         VentanaInicial ventana = new VentanaInicial();
         ventana.setVisible(true);
-        
     }
 }

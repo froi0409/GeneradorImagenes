@@ -1,8 +1,24 @@
+package com.froi.generadorfiguras.analizadores.usuarios;
+
+import com.froi.generadorfiguras.estructuras.ArbolAVL;
+import com.froi.generadorfiguras.estructuras.ListaDobleImg;
+import com.froi.generadorfiguras.estructuras.ListaEnlazadaDobleCircular;
+import com.froi.generadorfiguras.nodos.NodoAVL;
+import com.froi.generadorfiguras.nodos.NodoListaDobleC;
 import java_cup.runtime.*;
 
 class ParserUsuarios;
 
 parser code {:
+
+    private ArbolAVL arbolUsuarios;
+    private ListaEnlazadaDobleCircular listaImagenes;
+
+    public ParserUsuarios(UsuariosLexer lexer, ArbolAVL arbolUsuarios, ListaEnlazadaDobleCircular listaImagenes) {
+        super(lexer);
+        this.arbolUsuarios = arbolUsuarios;
+        this.listaImagenes = listaImagenes;
+    }
 
     public void report_error(String message, Object info) {
         System.out.println("reporterror");
@@ -20,9 +36,55 @@ parser code {:
 
 :}
 
-terminal 
+terminal LLAVE_A, LLAVE_C, COMA, PUNTOS, PUNTO_COMA, NUMERO, ALFANUMERICO;
 
-non terminal
+non terminal inicio, inicio_p, identificador;
+non terminal ListaDobleImg imagenes;
 
 start with inicio;
 
+inicio ::=  inicio_p inicio
+            |
+            ;
+
+inicio_p ::=    identificador:id PUNTOS imagenes:lista  PUNTO_COMA
+                {:
+                    try {
+                        NodoAVL nuevoNodo = new NodoAVL(id.toString(), lista);
+                        System.out.println("esta a punto de insertarse al usuario: " + id.toString());
+                        arbolUsuarios.insertar(nuevoNodo);
+                        System.out.println("Se insertó al usuario " + id.toString() + " y su lista es: ");
+                    } catch(RuntimeException e) {
+                        System.out.println("Error al insertar al usuario: " + id.toString());
+                    }
+                :}
+                ;
+
+imagenes ::=    imagenes:lista COMA identificador:id
+                {:
+                    try {
+                        NodoListaDobleC imagen = listaImagenes.buscar(id.toString());
+                        lista.insertar(imagen);
+                        System.out.println("Se insertó la imagen en la lista: " + id.toString());
+                    } catch(Exception e) {
+                        System.out.println("Error al buscar la imagen: " + id.toString());
+                    }
+                    RESULT = lista;
+                :}
+                | imagenes:lista identificador:id
+                {:
+                    try {
+                        NodoListaDobleC imagen = listaImagenes.buscar(id.toString());
+                        lista.insertar(imagen);
+                        System.out.println("Se insertó la imagen en la lista: " + id.toString());
+                    } catch(Exception e) {
+                        System.out.println("Error al buscar la imagen: " + id.toString());
+                    }
+                    RESULT = lista;
+                :}
+                | /*Fin de imagenes o sin imagenes*/    {:System.out.println("Se creó la lista"); RESULT = new ListaDobleImg();:}
+                ;
+
+identificador ::=   NUMERO:param         {:RESULT=param;:}
+                    | ALFANUMERICO:param {:RESULT=param;:}
+                    ;

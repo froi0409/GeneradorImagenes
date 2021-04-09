@@ -88,4 +88,23 @@ public class ListaEnlazadaDobleCircular {
             }while(aux != primero);
         }
     }
+    
+    /**
+     * Metodo que nos permite obtener un nodo perteneciente a la lista
+     * 
+     * @param identificador Identificador del objeto a encontrar
+     * @return Nodo que contiene el objeto a identificar
+     */
+    public NodoListaDobleC buscar(String identificador) {
+        if(primero != null) {
+            NodoListaDobleC aux = primero;
+            do {
+                if(aux.getIdentificador().equals(identificador)) {
+                    return aux;
+                }
+                aux = aux.getSiguiente();
+            } while(aux != primero);
+        }
+        return null;
+    }
 }
