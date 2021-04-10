@@ -55,6 +55,27 @@ public class ListaDoblementeEnlazada {
         return null;
     }
     
+    /**
+     * Permite buscar un nodo por posicion
+     * @param posicion posicion en la que se encuentra el nodo
+     * @return NodoAVL que se encuentra en la posicion solicitada
+     */
+    public NodoAVL buscar(int posicion) {
+        if(posicion > tamaño) {
+            throw new IndexOutOfBoundsException("Posición solicitada fuera de limites");
+        }
+        int cont = 0;
+        NodoListaDoble aux = primero;
+        while(aux != null) {
+            if(cont == posicion) {
+                return aux.getNodoCapa();
+            }
+            cont++;
+            aux = aux.getSiguiente();
+        }
+        return null;
+    }
+    
     public void imprimirLista() {
         if(primero != null) {
             NodoListaDoble aux = primero;
@@ -64,5 +85,11 @@ public class ListaDoblementeEnlazada {
             }
         }
     }
+
+    public int getTamaño() {
+        return tamaño;
+    }
+    
+    
     
 }
