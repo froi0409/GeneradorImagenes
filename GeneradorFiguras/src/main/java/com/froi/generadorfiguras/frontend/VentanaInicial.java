@@ -5,10 +5,12 @@
  */
 package com.froi.generadorfiguras.frontend;
 
-import com.froi.generadorfiguras.manejadores.ManejadorArchivos;
-import com.froi.generadorfiguras.manejadores.ManejadorPrincipal;
+import com.froi.generadorfiguras.estructuras.MatrizDispersa;
+import com.froi.generadorfiguras.manejadores.*;
+import com.froi.generadorfiguras.nodos.NodoAVL;
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -19,6 +21,7 @@ public class VentanaInicial extends javax.swing.JFrame {
 
     private ManejadorPrincipal manejadorPrincipal;
     private ManejadorArchivos manejadorArchivos;
+    private ManejadorGraficas manejadorGraficas;
     
     /**
      * Creates new form VentanaInicial
@@ -27,6 +30,10 @@ public class VentanaInicial extends javax.swing.JFrame {
         initComponents();
         this.manejadorPrincipal = new ManejadorPrincipal();
         this.manejadorArchivos = new ManejadorArchivos();
+        this.manejadorGraficas = new ManejadorGraficas();
+        lblBuscar.setVisible(false);
+        txtBuscar.setVisible(false);
+        
     }
 
     /**
@@ -52,7 +59,13 @@ public class VentanaInicial extends javax.swing.JFrame {
         txtImagenes = new javax.swing.JTextArea();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        comboTipoGrafica = new javax.swing.JComboBox<>();
+        btnGraficar = new javax.swing.JButton();
+        txtBuscar = new javax.swing.JTextField();
+        lblBuscar = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -154,16 +167,12 @@ public class VentanaInicial extends javax.swing.JFrame {
             .addGap(0, 570, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("1. Seleccione Usuario:");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                .addContainerGap(295, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -171,21 +180,90 @@ public class VentanaInicial extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE))
+                .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Imagenes", jPanel2);
 
+        jPanel6.setBackground(new java.awt.Color(254, 254, 254));
+        jPanel6.setPreferredSize(new java.awt.Dimension(548, 548));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 548, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLabel1.setText("Tipo de Grafica");
+
+        comboTipoGrafica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lista de Imagenes", "Arbol de Capas", "Capa", "Imagen y Arbol de Capas", "Arbol de Usuarios" }));
+        comboTipoGrafica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTipoGraficaActionPerformed(evt);
+            }
+        });
+
+        btnGraficar.setText("Graficar");
+        btnGraficar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraficarActionPerformed(evt);
+            }
+        });
+
+        lblBuscar.setText("Buscar");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboTipoGrafica, 0, 265, Short.MAX_VALUE)
+                    .addComponent(btnGraficar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(lblBuscar))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(txtBuscar))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboTipoGrafica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnGraficar)
+                        .addGap(0, 406, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Estado de Memoria", jPanel5);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,6 +335,65 @@ public class VentanaInicial extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
+    private void btnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarActionPerformed
+        // TODO add your handling code here:
+        switch (comboTipoGrafica.getSelectedIndex()) {
+            case 0:
+                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getListaImagenes().dotCode(), "ListaImagenes");
+                break;
+            case 1:
+                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolCapas().dotCode(), "ArbolCapas");
+                break;
+            case 2:
+                NodoAVL capaBuscada;
+                String capaABuscar = txtBuscar.getText();
+                if((capaBuscada = manejadorPrincipal.getArbolCapas().buscar(capaABuscar)) != null) {
+                    MatrizDispersa matrizObtenida = (MatrizDispersa) capaBuscada.getContenido();
+                    manejadorGraficas.graficarEstadoMemoria(matrizObtenida.dotCode(), "CapaSolicitada");
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se encontró la capa " + capaABuscar);
+                }
+                break;
+            case 3:
+                break;
+            case 4:
+                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolUsuarios().dotCode(), "ArbolUsuarios");
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_btnGraficarActionPerformed
+
+    private void comboTipoGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoGraficaActionPerformed
+        // TODO add your handling code here:
+        switch(comboTipoGrafica.getSelectedIndex()) {
+            case 0:
+                lblBuscar.setVisible(false);
+                txtBuscar.setVisible(false);
+                break;
+            case 1:
+                lblBuscar.setVisible(false);
+                txtBuscar.setVisible(false);
+                break;
+            case 2:
+                lblBuscar.setVisible(true);
+                txtBuscar.setVisible(true);
+                break;
+            case 3:
+                lblBuscar.setVisible(true);
+                txtBuscar.setVisible(true);
+                break;
+            case 4:
+                lblBuscar.setVisible(false);
+                txtBuscar.setVisible(false);
+                break;
+            default:
+                lblBuscar.setVisible(false);
+                txtBuscar.setVisible(false);
+                break;
+        }
+    }//GEN-LAST:event_comboTipoGraficaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -294,17 +431,23 @@ public class VentanaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapas;
+    private javax.swing.JButton btnGraficar;
     private javax.swing.JButton btnImagenes;
     private javax.swing.JButton btnUsuarios;
+    private javax.swing.JComboBox<String> comboTipoGrafica;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblBuscar;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextArea txtCapas;
     private javax.swing.JTextArea txtImagenes;
     private javax.swing.JTextArea txtUsuarios;

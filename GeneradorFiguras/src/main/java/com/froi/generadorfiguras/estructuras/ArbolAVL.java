@@ -162,14 +162,18 @@ public class ArbolAVL {
         if(raiz == null) {
             return null;
         } 
-        if(parametro.compareTo(nodo.getIdentificador()) == 0) {
-            return nodo;
-        } 
-        if(parametro.compareTo(nodo.getIdentificador()) > 0) {
-            return buscar(parametro, nodo.getDerecha());
-        }
-        if(parametro.compareTo(nodo.getIdentificador()) < 0) {
-            return buscar(parametro, nodo.getIzquierdo());
+        try {
+            if(parametro.compareTo(nodo.getIdentificador()) == 0) {
+                return nodo;
+            } 
+            if(parametro.compareTo(nodo.getIdentificador()) > 0) {
+                return buscar(parametro, nodo.getDerecha());
+            }
+            if(parametro.compareTo(nodo.getIdentificador()) < 0) {
+                return buscar(parametro, nodo.getIzquierdo());
+            }
+        } catch (Exception e) {
+            return null;
         }
         return null;
     }
@@ -268,6 +272,39 @@ public class ArbolAVL {
 
     public int getTamaño() {
         return tamaño;
+    }
+    
+    public String dotCode() {
+        String dotCode = "";
+        dotCode += "digraph arbol {\n";
+        dotCode += "rankdir=TB\n";
+        dotCode += "node [shape = record]\n";
+        dotCode += getCodigoNodos(raiz);
+        dotCode += "}\n";
+        return dotCode;
+    }
+    
+    /**
+     * Metodo que nos sirve para hallar las conexiones que cada nodo debe tener
+     * @param nodo Nodo a evaluar
+     * @return DotCode con las declaraciones de nodos y conexiones necesarias
+     */
+    private String getCodigoNodos(NodoAVL nodo) {
+        String codigoNodos = "";
+        if(raiz != null) {
+            if(nodo.getIzquierdo() == null && nodo.getDerecha() == null) {
+                codigoNodos += "nodo" + nodo.getIdentificador() + " [ label =\"" + nodo.getIdentificador() + "\"];\n";
+            } else {
+                codigoNodos += "nodo" + nodo.getIdentificador() + " [ label =\"<C0>|" + nodo.getIdentificador() +"|<C1>\"];\n";
+            }
+            if(nodo.getIzquierdo() != null) {
+                codigoNodos += getCodigoNodos(nodo.getIzquierdo()) + "nodo" + nodo.getIdentificador() +":C0->nodo" + nodo.getIzquierdo().getIdentificador() + "\n";
+            }
+            if(nodo.getDerecha() != null) {
+                codigoNodos += getCodigoNodos(nodo.getDerecha()) + "nodo" + nodo.getIdentificador() +":C1->nodo" + nodo.getDerecha().getIdentificador() + "\n";
+            }
+        }
+        return codigoNodos;
     }
     
 }

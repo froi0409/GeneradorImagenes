@@ -1,0 +1,11 @@
+digraph arbol {
+rankdir=TB
+node [shape = record]
+nodouserD [ label ="<C0>|userD|<C1>"];
+nodouserC [ label ="<C0>|userC|<C1>"];
+nodouserB [ label ="userB"];
+nodouserC:C0->nodouserB
+nodouserD:C0->nodouserC
+nodouserM [ label ="userM"];
+nodouserD:C1->nodouserM
+}

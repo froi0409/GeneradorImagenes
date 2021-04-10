@@ -1,0 +1,4 @@
+digraph arbol {
+rankdir=TB
+node [shape = record]
+}

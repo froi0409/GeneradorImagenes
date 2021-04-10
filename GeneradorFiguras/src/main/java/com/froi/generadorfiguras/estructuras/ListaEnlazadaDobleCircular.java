@@ -107,4 +107,34 @@ public class ListaEnlazadaDobleCircular {
         }
         return null;
     }
+    
+    public String dotCode() {
+        String codigo = "";
+        codigo += "digraph arbol {\n";
+        codigo += "rankdir=TB\n";
+        codigo += "node [shape = record]\n";
+        codigo += getCodigoNodos();
+        codigo += "}\n";
+        return codigo;
+    }
+    
+    private String getCodigoNodos() {
+        String codigo = "";
+        if(primero != null) {
+            NodoListaDobleC aux = primero;
+            do {
+                codigo += "nodo" + aux.getIdentificador() + " [ label =\"" + aux.getIdentificador() + "\"];\n";
+                aux = aux.getSiguiente();
+            } while (aux != primero);
+            aux = primero;
+            do {
+                codigo += "nodo" + aux.getIdentificador() +"->nodo" + aux.getSiguiente().getIdentificador() + "\n";
+                codigo += "nodo" + aux.getIdentificador() +"->nodo" + aux.getAnterior().getIdentificador() + "\n";
+                aux = aux.getSiguiente();
+            } while (aux != primero);
+            
+        }
+        return codigo;
+    }
+    
 }

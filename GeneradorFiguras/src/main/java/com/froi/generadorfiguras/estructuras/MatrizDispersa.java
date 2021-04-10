@@ -18,7 +18,7 @@ public class MatrizDispersa {
     private NodoMatriz inicio;
 
     public MatrizDispersa() {
-        inicio = new NodoMatriz(0,0,"");
+        inicio = new NodoMatriz(0,0,"nodoI");
         this.totalNodos = 0;
         this.totalFilas = 0;
         this.totalColumnas = 0;
@@ -26,10 +26,12 @@ public class MatrizDispersa {
     
     public NodoMatriz insertarFila(int fila) {
         NodoMatriz cabeza = inicio.getSiguienteFila();
-        NodoMatriz nuevo = new NodoMatriz(0,fila,"");
+        String filaString = "";
+        filaString += fila;
+        NodoMatriz nuevo = new NodoMatriz(0,fila,filaString);
         if(cabeza == null) {
-            inicio.setSiguienteFila(cabeza);
-            nuevo.setAnteriorColumna(inicio);
+            inicio.setSiguienteFila(nuevo);
+            nuevo.setAnteriorFila(inicio);
         } else {
             if(cabeza.getY() > fila) {
                 nuevo.setSiguienteFila(cabeza);
@@ -39,7 +41,7 @@ public class MatrizDispersa {
             } else {
                 NodoMatriz aux = cabeza;
                 while(aux.getSiguienteFila() != null) {
-                    if(aux.getSiguienteFila().getY() < fila) {
+                    if(aux.getSiguienteFila().getY() > fila && aux.getY() < fila) {
                         nuevo.setSiguienteFila(aux.getSiguienteFila());
                         aux.getSiguienteFila().setAnteriorFila(nuevo);
                         nuevo.setAnteriorFila(aux);
@@ -61,7 +63,9 @@ public class MatrizDispersa {
     
     public NodoMatriz insertarColumna(int columna) {
         NodoMatriz cabeza = inicio.getSiguienteColumna();
-        NodoMatriz nuevo = new NodoMatriz(columna, 0, "");
+        String columnaString = "";
+        columnaString += columna;
+        NodoMatriz nuevo = new NodoMatriz(columna, 0, columnaString);
         if(cabeza == null) {
             inicio.setSiguienteColumna(nuevo);
             nuevo.setAnteriorColumna(inicio);
@@ -74,7 +78,7 @@ public class MatrizDispersa {
             } else {
                 NodoMatriz aux = cabeza;
                 while(aux.getSiguienteColumna() != null) {
-                    if(aux.getSiguienteColumna().getX() < columna) {
+                    if(aux.getSiguienteColumna().getX() > columna && aux.getX() < columna) {
                         nuevo.setSiguienteColumna(aux.getSiguienteColumna());
                         aux.getSiguienteColumna().setAnteriorColumna(nuevo);
                         nuevo.setAnteriorColumna(aux);
@@ -121,7 +125,7 @@ public class MatrizDispersa {
                 NodoMatriz aux = cabeza;
                 boolean insertado = false;
                 while(aux.getSiguienteFila() != null) {
-                    if(aux.getSiguienteFila().getY() < fila) {
+                    if(aux.getSiguienteFila().getY() > fila) {
                         nuevo.setSiguienteFila(aux.getSiguienteFila());
                         aux.getSiguienteFila().setAnteriorFila(nuevo);
                         nuevo.setAnteriorFila(aux);
@@ -152,7 +156,7 @@ public class MatrizDispersa {
                 NodoMatriz aux = cabeza;
                 boolean insertado = false;
                 while(aux.getSiguienteColumna() != null) {
-                    if(aux.getSiguienteColumna().getX() < columna) {
+                    if(aux.getSiguienteColumna().getX() > columna) {
                         nuevo.setSiguienteColumna(aux.getSiguienteColumna());
                         aux.getSiguienteColumna().setAnteriorColumna(nuevo);
                         nuevo.setAnteriorColumna(aux);
@@ -225,6 +229,85 @@ public class MatrizDispersa {
 
     public int getTotalColumnas() {
         return totalColumnas;
+    }
+    
+    public String dotCode() {
+        String codigo = "";
+        codigo += "digraph matriz {\n";
+        codigo += "node [shape = box]\n";
+        codigo += "e0[ shape = point, width = 0 ];\n";
+        codigo += "e1[ shape = point, width = 0 ];\n";
+        codigo += getCodigoNodos();
+        codigo += "}\n";
+        return codigo;
+    }
+    
+    private String getCodigoNodos() {
+        String codigo = "";
+        int cont = 1;
+        if(inicio != null) {
+            NodoMatriz aux = inicio;
+            while(aux != null) {
+                NodoMatriz auxF = aux;
+                codigo += "subgraph cluster_" + cont + " {\n";
+                while(auxF != null) {
+                    String coord = auxF.getX() + "o" + auxF.getY();
+                    codigo += "nodo" + coord + " [ label =\"" + auxF.getInfo() + "\", width = 1.5, style = filled, group = " + cont + " ];\n";
+                    auxF = auxF.getSiguienteFila();
+                }
+                cont++;
+                codigo += "color=\"White\";\n";
+                codigo += "}\n";
+                aux = aux.getSiguienteColumna();
+            }
+            
+            aux = inicio;
+            while(aux != null) {
+                NodoMatriz auxF = aux;
+                while(auxF != null) {
+                    String coord = auxF.getX() + "o" + auxF.getY();
+                    if(auxF.getAnteriorColumna() != null) {
+                        String coordAuxF = auxF.getAnteriorColumna().getX() + "o" + auxF.getAnteriorColumna().getY();
+                        codigo += "nodo" + coord +"->nodo" + coordAuxF + "\n";
+                    }
+                    if(auxF.getAnteriorFila() != null){
+                        String coordAuxF = auxF.getAnteriorFila().getX() + "o" + auxF.getAnteriorFila().getY();
+                        codigo += "nodo" + coord +"->nodo" + coordAuxF + "\n";
+                    }
+                    if(auxF.getSiguienteColumna() != null) {
+                        String coordAuxF = auxF.getSiguienteColumna().getX() + "o" + auxF.getSiguienteColumna().getY();
+                        codigo += "nodo" + coord +"->nodo" + coordAuxF + "\n";
+                    }
+                    if(auxF.getSiguienteFila() != null) {
+                        String coordAuxF = auxF.getSiguienteFila().getX() + "o" + auxF.getSiguienteFila().getY();
+                        codigo += "nodo" + coord +"->nodo" + coordAuxF + "\n";
+                    }
+                    
+                    auxF = auxF.getSiguienteColumna();
+                }
+                auxF = aux;
+                codigo += "{ rank = same; ";
+                while(auxF != null) {
+                    codigo += "nodo" + auxF.getX() + "o" + auxF.getY() + "; ";
+                    auxF = auxF.getSiguienteColumna();
+                }
+                codigo += " };\n";
+                aux = aux.getSiguienteFila();
+            }
+            
+//            aux = inicio;
+//            while(aux != null) {
+//                NodoMatriz auxF = aux;
+//                codigo += "{ rank = same; ";
+//                while(auxF != null) {
+//                    codigo += "nodo" + auxF.getX() + "o" + auxF.getY() + "; ";
+//                    auxF = auxF.getSiguienteColumna();
+//                }
+//                codigo += " };\n";
+//                aux = aux.getSiguienteFila();
+//            }
+        }
+        return codigo;
     }
     
 }
