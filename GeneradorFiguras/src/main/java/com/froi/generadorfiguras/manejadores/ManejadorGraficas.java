@@ -9,9 +9,12 @@ import com.froi.generadorfiguras.estructuras.ListaDoblementeEnlazada;
 import com.froi.generadorfiguras.estructuras.MatrizDispersa;
 import com.froi.generadorfiguras.nodos.NodoMatriz;
 import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.io.FileWriter;
 import java.io.PrintWriter;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -22,7 +25,13 @@ import javax.swing.JPanel;
  */
 public class ManejadorGraficas {
 
-    public void graficarEstadoMemoria(String dotCode, String nombreArchivo) {
+    /**
+     * Permite generar una grafica (con graphviz) sobre el estado de la memoria
+     * @param dotCode codigo .dot
+     * @param nombreArchivo Nombre que tendrán los archivos generados
+     * @param panel panel donde se pondrá la imagen
+     */
+    public void graficarEstadoMemoria(String dotCode, String nombreArchivo, JPanel panel) {
         String nomArch = nombreArchivo + ".dot";
         System.out.println(dotCode);
         FileWriter fichero = null;
@@ -73,7 +82,7 @@ public class ManejadorGraficas {
         int anchoBtn = panelGraficacion.getWidth() / x;
         int altoBtn = panelGraficacion.getHeight() / y;
         
-        for(int capa = 0; capa < listaCapasGraficar.getTamaño(); capa++) {
+        for(int capa = listaCapasGraficar.getTamaño()-1; capa >= 0; capa--) {
             for(int i = 1; i <= x; i++){
                 for(int j = 1; j <= y; j++) {
                     MatrizDispersa matrizAux = (MatrizDispersa) listaCapasGraficar.buscar(capa).getContenido();

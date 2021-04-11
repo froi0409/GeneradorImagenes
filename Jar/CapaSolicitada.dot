@@ -1,0 +1,172 @@
+digraph matriz {
+node [shape = box]
+edge [dir = both]
+e0[ shape = point, width = 0 ];
+e1[ shape = point, width = 0 ];
+subgraph cluster_1 {
+nodo0o0 [ label ="nodoI", width = 1.5, style = filled, group = 1 ];
+nodo0o3 [ label ="3", width = 1.5, style = filled, group = 1 ];
+nodo0o4 [ label ="4", width = 1.5, style = filled, group = 1 ];
+nodo0o5 [ label ="5", width = 1.5, style = filled, group = 1 ];
+nodo0o6 [ label ="6", width = 1.5, style = filled, group = 1 ];
+nodo0o7 [ label ="7", width = 1.5, style = filled, group = 1 ];
+nodo0o8 [ label ="8", width = 1.5, style = filled, group = 1 ];
+nodo0o9 [ label ="9", width = 1.5, style = filled, group = 1 ];
+nodo0o10 [ label ="10", width = 1.5, style = filled, group = 1 ];
+nodo0o11 [ label ="11", width = 1.5, style = filled, group = 1 ];
+color="White";
+}
+subgraph cluster_2 {
+nodo1o0 [ label ="1", width = 1.5, style = filled, group = 2 ];
+nodo1o5 [ label ="#0040FF", width = 1.5, style = filled, group = 2 ];
+nodo1o6 [ label ="#0040FF", width = 1.5, style = filled, group = 2 ];
+nodo1o7 [ label ="#0040FF", width = 1.5, style = filled, group = 2 ];
+nodo1o8 [ label ="#0040FF", width = 1.5, style = filled, group = 2 ];
+color="White";
+}
+subgraph cluster_3 {
+nodo2o0 [ label ="2", width = 1.5, style = filled, group = 3 ];
+nodo2o5 [ label ="#0040FF", width = 1.5, style = filled, group = 3 ];
+nodo2o6 [ label ="#0040FF", width = 1.5, style = filled, group = 3 ];
+nodo2o7 [ label ="#0040FF", width = 1.5, style = filled, group = 3 ];
+nodo2o8 [ label ="#0040FF", width = 1.5, style = filled, group = 3 ];
+color="White";
+}
+subgraph cluster_4 {
+nodo3o0 [ label ="3", width = 1.5, style = filled, group = 4 ];
+nodo3o3 [ label ="#0040FF", width = 1.5, style = filled, group = 4 ];
+nodo3o4 [ label ="#0040FF", width = 1.5, style = filled, group = 4 ];
+nodo3o5 [ label ="#0040FF", width = 1.5, style = filled, group = 4 ];
+nodo3o6 [ label ="#0040FF", width = 1.5, style = filled, group = 4 ];
+nodo3o7 [ label ="#0040FF", width = 1.5, style = filled, group = 4 ];
+nodo3o8 [ label ="#0040FF", width = 1.5, style = filled, group = 4 ];
+nodo3o9 [ label ="#0040FF", width = 1.5, style = filled, group = 4 ];
+nodo3o10 [ label ="#0040FF", width = 1.5, style = filled, group = 4 ];
+nodo3o11 [ label ="#0040FF", width = 1.5, style = filled, group = 4 ];
+color="White";
+}
+subgraph cluster_5 {
+nodo4o0 [ label ="4", width = 1.5, style = filled, group = 5 ];
+nodo4o3 [ label ="#0040FF", width = 1.5, style = filled, group = 5 ];
+nodo4o4 [ label ="#0040FF", width = 1.5, style = filled, group = 5 ];
+nodo4o5 [ label ="#0040FF", width = 1.5, style = filled, group = 5 ];
+nodo4o6 [ label ="#0040FF", width = 1.5, style = filled, group = 5 ];
+nodo4o7 [ label ="#0040FF", width = 1.5, style = filled, group = 5 ];
+nodo4o8 [ label ="#0040FF", width = 1.5, style = filled, group = 5 ];
+nodo4o9 [ label ="#0040FF", width = 1.5, style = filled, group = 5 ];
+nodo4o10 [ label ="#0040FF", width = 1.5, style = filled, group = 5 ];
+nodo4o11 [ label ="#0040FF", width = 1.5, style = filled, group = 5 ];
+color="White";
+}
+subgraph cluster_6 {
+nodo5o0 [ label ="5", width = 1.5, style = filled, group = 6 ];
+nodo5o3 [ label ="#0040FF", width = 1.5, style = filled, group = 6 ];
+nodo5o4 [ label ="#0040FF", width = 1.5, style = filled, group = 6 ];
+nodo5o7 [ label ="#0040FF", width = 1.5, style = filled, group = 6 ];
+nodo5o8 [ label ="#0040FF", width = 1.5, style = filled, group = 6 ];
+nodo5o9 [ label ="#0040FF", width = 1.5, style = filled, group = 6 ];
+color="White";
+}
+subgraph cluster_7 {
+nodo6o0 [ label ="6", width = 1.5, style = filled, group = 7 ];
+nodo6o3 [ label ="#0040FF", width = 1.5, style = filled, group = 7 ];
+nodo6o4 [ label ="#0040FF", width = 1.5, style = filled, group = 7 ];
+nodo6o7 [ label ="#0040FF", width = 1.5, style = filled, group = 7 ];
+nodo6o8 [ label ="#0040FF", width = 1.5, style = filled, group = 7 ];
+nodo6o9 [ label ="#0040FF", width = 1.5, style = filled, group = 7 ];
+color="White";
+}
+subgraph cluster_8 {
+nodo7o0 [ label ="7", width = 1.5, style = filled, group = 8 ];
+nodo7o3 [ label ="#0040FF", width = 1.5, style = filled, group = 8 ];
+nodo7o4 [ label ="#0040FF", width = 1.5, style = filled, group = 8 ];
+nodo7o7 [ label ="#0040FF", width = 1.5, style = filled, group = 8 ];
+nodo7o8 [ label ="#0040FF", width = 1.5, style = filled, group = 8 ];
+nodo7o9 [ label ="#0040FF", width = 1.5, style = filled, group = 8 ];
+nodo7o10 [ label ="#0040FF", width = 1.5, style = filled, group = 8 ];
+nodo7o11 [ label ="#0040FF", width = 1.5, style = filled, group = 8 ];
+color="White";
+}
+subgraph cluster_9 {
+nodo8o0 [ label ="8", width = 1.5, style = filled, group = 9 ];
+nodo8o4 [ label ="#0040FF", width = 1.5, style = filled, group = 9 ];
+nodo8o5 [ label ="#0040FF", width = 1.5, style = filled, group = 9 ];
+nodo8o6 [ label ="#0040FF", width = 1.5, style = filled, group = 9 ];
+nodo8o7 [ label ="#0040FF", width = 1.5, style = filled, group = 9 ];
+nodo8o8 [ label ="#0040FF", width = 1.5, style = filled, group = 9 ];
+nodo8o9 [ label ="#0040FF", width = 1.5, style = filled, group = 9 ];
+nodo8o10 [ label ="#0040FF", width = 1.5, style = filled, group = 9 ];
+nodo8o11 [ label ="#0040FF", width = 1.5, style = filled, group = 9 ];
+color="White";
+}
+nodo0o0->nodo0o3
+nodo1o0->nodo1o5
+nodo2o0->nodo2o5
+nodo3o0->nodo3o3
+nodo4o0->nodo4o3
+nodo5o0->nodo5o3
+nodo6o0->nodo6o3
+nodo7o0->nodo7o3
+nodo8o0->nodo8o4
+rank = same { nodo0o0->nodo1o0->nodo2o0->nodo3o0->nodo4o0->nodo5o0->nodo6o0->nodo7o0->nodo8o0 };
+nodo0o3->nodo0o4
+nodo3o3->nodo3o4
+nodo4o3->nodo4o4
+nodo5o3->nodo5o4
+nodo6o3->nodo6o4
+nodo7o3->nodo7o4
+rank = same { nodo0o3->nodo3o3->nodo4o3->nodo5o3->nodo6o3->nodo7o3 };
+nodo0o4->nodo0o5
+nodo3o4->nodo3o5
+nodo4o4->nodo4o5
+nodo5o4->nodo5o7
+nodo6o4->nodo6o7
+nodo7o4->nodo7o7
+nodo8o4->nodo8o5
+rank = same { nodo0o4->nodo3o4->nodo4o4->nodo5o4->nodo6o4->nodo7o4->nodo8o4 };
+nodo0o5->nodo0o6
+nodo1o5->nodo1o6
+nodo2o5->nodo2o6
+nodo3o5->nodo3o6
+nodo4o5->nodo4o6
+nodo8o5->nodo8o6
+rank = same { nodo0o5->nodo1o5->nodo2o5->nodo3o5->nodo4o5->nodo8o5 };
+nodo0o6->nodo0o7
+nodo1o6->nodo1o7
+nodo2o6->nodo2o7
+nodo3o6->nodo3o7
+nodo4o6->nodo4o7
+nodo8o6->nodo8o7
+rank = same { nodo0o6->nodo1o6->nodo2o6->nodo3o6->nodo4o6->nodo8o6 };
+nodo0o7->nodo0o8
+nodo1o7->nodo1o8
+nodo2o7->nodo2o8
+nodo3o7->nodo3o8
+nodo4o7->nodo4o8
+nodo5o7->nodo5o8
+nodo6o7->nodo6o8
+nodo7o7->nodo7o8
+nodo8o7->nodo8o8
+rank = same { nodo0o7->nodo1o7->nodo2o7->nodo3o7->nodo4o7->nodo5o7->nodo6o7->nodo7o7->nodo8o7 };
+nodo0o8->nodo0o9
+nodo3o8->nodo3o9
+nodo4o8->nodo4o9
+nodo5o8->nodo5o9
+nodo6o8->nodo6o9
+nodo7o8->nodo7o9
+nodo8o8->nodo8o9
+rank = same { nodo0o8->nodo1o8->nodo2o8->nodo3o8->nodo4o8->nodo5o8->nodo6o8->nodo7o8->nodo8o8 };
+nodo0o9->nodo0o10
+nodo3o9->nodo3o10
+nodo4o9->nodo4o10
+nodo7o9->nodo7o10
+nodo8o9->nodo8o10
+rank = same { nodo0o9->nodo3o9->nodo4o9->nodo5o9->nodo6o9->nodo7o9->nodo8o9 };
+nodo0o10->nodo0o11
+nodo3o10->nodo3o11
+nodo4o10->nodo4o11
+nodo7o10->nodo7o11
+nodo8o10->nodo8o11
+rank = same { nodo0o10->nodo3o10->nodo4o10->nodo7o10->nodo8o10 };
+rank = same { nodo0o11->nodo3o11->nodo4o11->nodo7o11->nodo8o11 };
+}

@@ -504,17 +504,17 @@ public class VentanaInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
         switch (comboTipoGrafica.getSelectedIndex()) {
             case 0:
-                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getListaImagenes().dotCode(), "ListaImagenes");
+                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getListaImagenes().dotCode(), "ListaImagenes", jPanel6);
                 break;
             case 1:
-                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolCapas().dotCode(), "ArbolCapas");
+                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolCapas().dotCode(), "ArbolCapas", jPanel6);
                 break;
             case 2:
                 NodoAVL capaBuscada;
                 String capaABuscar = txtBuscar.getText();
                 if((capaBuscada = manejadorPrincipal.getArbolCapas().buscar(capaABuscar)) != null) {
                     MatrizDispersa matrizObtenida = (MatrizDispersa) capaBuscada.getContenido();
-                    manejadorGraficas.graficarEstadoMemoria(matrizObtenida.dotCode(), "CapaSolicitada");
+                    manejadorGraficas.graficarEstadoMemoria(matrizObtenida.dotCode(), "CapaSolicitada", jPanel6);
                 } else {
                     JOptionPane.showMessageDialog(null, "No se encontró la capa " + capaABuscar);
                 }
@@ -525,13 +525,13 @@ public class VentanaInicial extends javax.swing.JFrame {
                 if((imagen = manejadorPrincipal.getListaImagenes().buscar(imagenSolicitada)) != null) {
                     System.out.println(imagen.dotCode(manejadorPrincipal.getArbolCapas()));
                     String codigo = imagen.dotCode(manejadorPrincipal.getArbolCapas());
-                    manejadorGraficas.graficarEstadoMemoria(codigo, "ImagenConArbol");
+                    manejadorGraficas.graficarEstadoMemoria(codigo, "ImagenConArbol", jPanel6);
                 } else {
                     JOptionPane.showMessageDialog(null, "No se ha encontrado la imagen: " + imagenSolicitada);
                 }
                 break;
             case 4:
-                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolUsuarios().dotCode(), "ArbolUsuarios");
+                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolUsuarios().dotCode(), "ArbolUsuarios", jPanel6);
                 break;
             default:
                 break;
