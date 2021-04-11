@@ -39,7 +39,6 @@ public class VentanaInicial extends javax.swing.JFrame {
         lblApoyo2.setVisible(false);
         txtApoyo2.setVisible(false);
         txtBuscar.setVisible(false);
-        
     }
 
     /**
@@ -51,7 +50,7 @@ public class VentanaInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         btnCapas = new javax.swing.JButton();
@@ -81,17 +80,12 @@ public class VentanaInicial extends javax.swing.JFrame {
         btnGenerarImagen = new javax.swing.JButton();
         lblApoyo2 = new javax.swing.JLabel();
         txtApoyo2 = new javax.swing.JTextField();
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 738, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 572, Short.MAX_VALUE)
-        );
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -144,7 +138,7 @@ public class VentanaInicial extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btnImagenes, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -207,7 +201,7 @@ public class VentanaInicial extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(comboTipoGrafica, 0, 265, Short.MAX_VALUE)
+                    .addComponent(comboTipoGrafica, 0, 289, Short.MAX_VALUE)
                     .addComponent(txtBuscar)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -306,7 +300,7 @@ public class VentanaInicial extends javax.swing.JFrame {
                                     .addComponent(lblDescripcionGraficacion, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(lblTipoRecorrido, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 75, Short.MAX_VALUE)))
+                                .addGap(0, 99, Short.MAX_VALUE)))
                         .addGap(18, 18, 18)))
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -341,6 +335,37 @@ public class VentanaInicial extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Imagenes", jPanel2);
 
+        jMenu1.setText("CRUD");
+
+        jMenu2.setText("Usuario");
+
+        jMenuItem2.setText("Agregar");
+        jMenuItem2.setToolTipText("");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
+        jMenu1.add(jMenu2);
+
+        jMenu3.setText("Imagenes");
+
+        jMenuItem1.setText("Agregar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
+        jMenu1.add(jMenu3);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -355,47 +380,184 @@ public class VentanaInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapasActionPerformed
+    private void btnGenerarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarImagenActionPerformed
         // TODO add your handling code here:
-        
-        JFileChooser fileChooser = new JFileChooser();
-        //Indicamos que solo podemos seleccionar archivos
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        //Indicamos el filtro .form
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.cap", "cap");
-        fileChooser.setFileFilter(filtro);
-        //Abrimos el file chooser
-        int comprobante = fileChooser.showOpenDialog(fileChooser);
-        if(comprobante == JFileChooser.APPROVE_OPTION) {
-            File archivo = fileChooser.getSelectedFile();
-            txtCapas.setText("Se seleccionó el archivo a importar\n");
-            //Enviamos a analizar el archivo a importar
-            manejadorArchivos.manejarArchivoCap(archivo, manejadorPrincipal.getArbolCapas());
-        } else {
-            txtCapas.setText("Error al seleccionar el archivo a importar\n");
-        }
-        
-    }//GEN-LAST:event_btnCapasActionPerformed
+        ListaDoblementeEnlazada listaCapasGraficar = new ListaDoblementeEnlazada();
 
-    private void btnImagenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagenesActionPerformed
-        // TODO add your handling code here:
-        JFileChooser fileChooser = new JFileChooser();
-        //Indicamos que solo podemos seleccionar archivos
-        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
-        //Indicamos el filtro .form
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.im", "im");
-        fileChooser.setFileFilter(filtro);
-        //Abrimos el file chooser
-        int comprobante = fileChooser.showOpenDialog(fileChooser);
-        if(comprobante == JFileChooser.APPROVE_OPTION) {
-            File archivo = fileChooser.getSelectedFile();
-            txtImagenes.setText("Se seleccionó el archivo a importar\n");
-            //Enviamos a analizar el archivo a importar
-            manejadorArchivos.manejarArchivoIm(archivo, manejadorPrincipal.getListaImagenes(), manejadorPrincipal.getArbolCapas());
-        } else {
-            txtImagenes.setText("Error al seleccionar el archivo a importar\n");
+        switch(comboTipoGeneracion.getSelectedIndex()) {
+            case 0:
+            //Por recorrido limitado
+            try {
+                String numeroDeCapasS = txtApoyoImagenes.getText();
+                int numeroDeCapas = Integer.parseInt(numeroDeCapasS);
+                if(numeroDeCapas > manejadorPrincipal.getArbolCapas().getTamaño()) {
+                    JOptionPane.showMessageDialog(null, "El numero de capas solicitadas es mayor al numero de capas existentes");
+                } else {
+                    switch(comboTipoRecorrido.getSelectedIndex()) {
+                        case 0:
+                        manejadorPrincipal.getArbolCapas().llenarListaDoble(listaCapasGraficar, "INORDEN", numeroDeCapas);
+                        break;
+                        case 1:
+                        manejadorPrincipal.getArbolCapas().llenarListaDoble(listaCapasGraficar, "PREORDEN", numeroDeCapas);
+                        break;
+                        case 2:
+                        manejadorPrincipal.getArbolCapas().llenarListaDoble(listaCapasGraficar, "POSTORDEN", numeroDeCapas);
+                        break;
+                    }
+                    ListaDoblementeEnlazada listaCapasEnviar = new ListaDoblementeEnlazada();
+                    for(int i  = 0; i < numeroDeCapas; i++) {
+                        listaCapasEnviar.insertar(listaCapasGraficar.buscar(i));
+                    }
+                    manejadorGraficas.graficarImagen(listaCapasEnviar, jPanel4);
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Revise si la cantidad de capas es correcta");
+            }
+            break;
+            case 1:
+            //Por lista de imagenes
+            NodoListaDobleC imagenAUsar;
+            String idImagen = txtApoyoImagenes.getText();
+            if((imagenAUsar = manejadorPrincipal.getListaImagenes().buscar(idImagen)) != null) {
+                manejadorGraficas.graficarImagen(imagenAUsar.getListaCapas(), jPanel4);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha encontrado la imagen: " + idImagen);
+            }
+            break;
+            case 2:
+            //Por capa
+            String capaSolicitada = txtApoyoImagenes.getText();
+            NodoAVL capaGraficar;
+            if((capaGraficar = manejadorPrincipal.getArbolCapas().buscar(capaSolicitada)) != null) {
+                listaCapasGraficar.insertar(capaGraficar);
+                manejadorGraficas.graficarImagen(listaCapasGraficar, jPanel4);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha encontrado la capa: "  + capaSolicitada);
+            }
+            break;
+            case 3:
+            //Por Lista de Imagenes
+            String usuarioConsultado = txtApoyoImagenes.getText();
+            String imagenConsultada = txtApoyo2.getText();
+            NodoAVL usuario;
+            if((usuario = manejadorPrincipal.getArbolUsuarios().buscar(usuarioConsultado)) != null) {
+                ListaDobleImg listaImgUser = (ListaDobleImg) usuario.getContenido();
+                NodoListaDobleC imagen;
+                if((imagen = listaImgUser.buscar(imagenConsultada)) != null) {
+                    manejadorGraficas.graficarImagen(imagen.getListaCapas(), jPanel4);
+                } else {
+                    JOptionPane.showMessageDialog(null, "El usuario " + usuarioConsultado + " no posee la imagen: " + imagenConsultada);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha encontrado el usuario: " + usuarioConsultado);
+            }
+            break;
+            default:
+            break;
         }
-    }//GEN-LAST:event_btnImagenesActionPerformed
+    }//GEN-LAST:event_btnGenerarImagenActionPerformed
+
+    private void comboTipoRecorridoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoRecorridoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboTipoRecorridoActionPerformed
+
+    private void comboTipoGeneracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoGeneracionActionPerformed
+        // TODO add your handling code here:
+        txtApoyoImagenes.setText("");
+        txtApoyo2.setText("");
+        switch(comboTipoGeneracion.getSelectedIndex()) {
+            case 0:
+            lblDescripcionGraficacion.setText("Numero de Capas a Utilizar: ");
+            lblApoyo2.setVisible(false);
+            txtApoyo2.setVisible(false);
+            lblTipoRecorrido.setVisible(true);
+            comboTipoRecorrido.setVisible(true);
+            break;
+            case 1:
+            lblDescripcionGraficacion.setText("Id de la Imagen: ");
+            lblApoyo2.setVisible(false);
+            txtApoyo2.setVisible(false);
+            lblTipoRecorrido.setVisible(false);
+            comboTipoRecorrido.setVisible(false);
+            break;
+            case 2:
+            lblDescripcionGraficacion.setText("Id de la Capa: ");
+            lblApoyo2.setVisible(false);
+            txtApoyo2.setVisible(false);
+            lblTipoRecorrido.setVisible(false);
+            comboTipoRecorrido.setVisible(false);
+            break;
+            case 3:
+            lblDescripcionGraficacion.setText("Id del Usuario: ");
+            lblApoyo2.setVisible(true);
+            txtApoyo2.setVisible(true);
+            lblTipoRecorrido.setVisible(false);
+            comboTipoRecorrido.setVisible(false);
+            break;
+            default:
+            break;
+        }
+    }//GEN-LAST:event_comboTipoGeneracionActionPerformed
+
+    private void btnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarActionPerformed
+        // TODO add your handling code here:
+        switch (comboTipoGrafica.getSelectedIndex()) {
+            case 0:
+            manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getListaImagenes().dotCode(), "ListaImagenes");
+            break;
+            case 1:
+            manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolCapas().dotCode(), "ArbolCapas");
+            break;
+            case 2:
+            NodoAVL capaBuscada;
+            String capaABuscar = txtBuscar.getText();
+            if((capaBuscada = manejadorPrincipal.getArbolCapas().buscar(capaABuscar)) != null) {
+                MatrizDispersa matrizObtenida = (MatrizDispersa) capaBuscada.getContenido();
+                manejadorGraficas.graficarEstadoMemoria(matrizObtenida.dotCode(), "CapaSolicitada");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró la capa " + capaABuscar);
+            }
+            break;
+            case 3:
+            break;
+            case 4:
+            manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolUsuarios().dotCode(), "ArbolUsuarios");
+            break;
+            default:
+            break;
+        }
+    }//GEN-LAST:event_btnGraficarActionPerformed
+
+    private void comboTipoGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoGraficaActionPerformed
+        // TODO add your handling code here:
+        switch(comboTipoGrafica.getSelectedIndex()) {
+            case 0:
+            lblBuscar.setVisible(false);
+            txtBuscar.setVisible(false);
+            break;
+            case 1:
+            lblBuscar.setVisible(false);
+            txtBuscar.setVisible(false);
+            break;
+            case 2:
+            lblBuscar.setVisible(true);
+            txtBuscar.setVisible(true);
+            break;
+            case 3:
+            lblBuscar.setVisible(true);
+            txtBuscar.setVisible(true);
+            break;
+            case 4:
+            lblBuscar.setVisible(false);
+            txtBuscar.setVisible(false);
+            break;
+            default:
+            lblBuscar.setVisible(false);
+            txtBuscar.setVisible(false);
+            break;
+        }
+    }//GEN-LAST:event_comboTipoGraficaActionPerformed
 
     private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
         // TODO add your handling code here:
@@ -417,184 +579,61 @@ public class VentanaInicial extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnUsuariosActionPerformed
 
-    private void btnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarActionPerformed
+    private void btnImagenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagenesActionPerformed
         // TODO add your handling code here:
-        switch (comboTipoGrafica.getSelectedIndex()) {
-            case 0:
-                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getListaImagenes().dotCode(), "ListaImagenes");
-                break;
-            case 1:
-                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolCapas().dotCode(), "ArbolCapas");
-                break;
-            case 2:
-                NodoAVL capaBuscada;
-                String capaABuscar = txtBuscar.getText();
-                if((capaBuscada = manejadorPrincipal.getArbolCapas().buscar(capaABuscar)) != null) {
-                    MatrizDispersa matrizObtenida = (MatrizDispersa) capaBuscada.getContenido();
-                    manejadorGraficas.graficarEstadoMemoria(matrizObtenida.dotCode(), "CapaSolicitada");
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se encontró la capa " + capaABuscar);
-                }
-                break;
-            case 3:
-                break;
-            case 4:
-                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolUsuarios().dotCode(), "ArbolUsuarios");
-                break;
-            default:
-                break;
+        JFileChooser fileChooser = new JFileChooser();
+        //Indicamos que solo podemos seleccionar archivos
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        //Indicamos el filtro .form
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.im", "im");
+        fileChooser.setFileFilter(filtro);
+        //Abrimos el file chooser
+        int comprobante = fileChooser.showOpenDialog(fileChooser);
+        if(comprobante == JFileChooser.APPROVE_OPTION) {
+            File archivo = fileChooser.getSelectedFile();
+            txtImagenes.setText("Se seleccionó el archivo a importar\n");
+            //Enviamos a analizar el archivo a importar
+            manejadorArchivos.manejarArchivoIm(archivo, manejadorPrincipal.getListaImagenes(), manejadorPrincipal.getArbolCapas());
+        } else {
+            txtImagenes.setText("Error al seleccionar el archivo a importar\n");
         }
-    }//GEN-LAST:event_btnGraficarActionPerformed
+    }//GEN-LAST:event_btnImagenesActionPerformed
 
-    private void comboTipoGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoGraficaActionPerformed
+    private void btnCapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapasActionPerformed
         // TODO add your handling code here:
-        switch(comboTipoGrafica.getSelectedIndex()) {
-            case 0:
-                lblBuscar.setVisible(false);
-                txtBuscar.setVisible(false);
-                break;
-            case 1:
-                lblBuscar.setVisible(false);
-                txtBuscar.setVisible(false);
-                break;
-            case 2:
-                lblBuscar.setVisible(true);
-                txtBuscar.setVisible(true);
-                break;
-            case 3:
-                lblBuscar.setVisible(true);
-                txtBuscar.setVisible(true);
-                break;
-            case 4:
-                lblBuscar.setVisible(false);
-                txtBuscar.setVisible(false);
-                break;
-            default:
-                lblBuscar.setVisible(false);
-                txtBuscar.setVisible(false);
-                break;
+
+        JFileChooser fileChooser = new JFileChooser();
+        //Indicamos que solo podemos seleccionar archivos
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        //Indicamos el filtro .form
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.cap", "cap");
+        fileChooser.setFileFilter(filtro);
+        //Abrimos el file chooser
+        int comprobante = fileChooser.showOpenDialog(fileChooser);
+        if(comprobante == JFileChooser.APPROVE_OPTION) {
+            File archivo = fileChooser.getSelectedFile();
+            txtCapas.setText("Se seleccionó el archivo a importar\n");
+            //Enviamos a analizar el archivo a importar
+            manejadorArchivos.manejarArchivoCap(archivo, manejadorPrincipal.getArbolCapas());
+        } else {
+            txtCapas.setText("Error al seleccionar el archivo a importar\n");
         }
-    }//GEN-LAST:event_comboTipoGraficaActionPerformed
 
-    private void comboTipoRecorridoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoRecorridoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboTipoRecorridoActionPerformed
+    }//GEN-LAST:event_btnCapasActionPerformed
 
-    private void comboTipoGeneracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoGeneracionActionPerformed
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         // TODO add your handling code here:
-        txtApoyoImagenes.setText("");
-        txtApoyo2.setText("");
-        switch(comboTipoGeneracion.getSelectedIndex()) {
-            case 0:
-                lblDescripcionGraficacion.setText("Numero de Capas a Utilizar: ");
-                lblApoyo2.setVisible(false);
-                txtApoyo2.setVisible(false);
-                lblTipoRecorrido.setVisible(true);
-                comboTipoRecorrido.setVisible(true);
-                break;
-            case 1:
-                lblDescripcionGraficacion.setText("Id de la Imagen: ");
-                lblApoyo2.setVisible(false);
-                txtApoyo2.setVisible(false);
-                lblTipoRecorrido.setVisible(false);
-                comboTipoRecorrido.setVisible(false);
-                break;
-            case 2:
-                lblDescripcionGraficacion.setText("Id de la Capa: ");
-                lblApoyo2.setVisible(false);
-                txtApoyo2.setVisible(false);
-                lblTipoRecorrido.setVisible(false);
-                comboTipoRecorrido.setVisible(false);
-                break;
-            case 3:
-                lblDescripcionGraficacion.setText("Id del Usuario: ");
-                lblApoyo2.setVisible(true);
-                txtApoyo2.setVisible(true);
-                lblTipoRecorrido.setVisible(false);
-                comboTipoRecorrido.setVisible(false);
-                break;
-            default:
-                break;
-        }
-    }//GEN-LAST:event_comboTipoGeneracionActionPerformed
+        CreacionUsuario creacionUsuario = new CreacionUsuario();
+        creacionUsuario.setVisible(true);
+        creacionUsuario.setArbolUsuarios(manejadorPrincipal.getArbolUsuarios());
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void btnGenerarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarImagenActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
-        ListaDoblementeEnlazada listaCapasGraficar = new ListaDoblementeEnlazada();
-        
-        switch(comboTipoGeneracion.getSelectedIndex()) {
-            case 0:
-                //Por recorrido limitado
-                try {
-                    String numeroDeCapasS = txtApoyoImagenes.getText();
-                    int numeroDeCapas = Integer.parseInt(numeroDeCapasS);
-                    if(numeroDeCapas > manejadorPrincipal.getArbolCapas().getTamaño()) {
-                        JOptionPane.showMessageDialog(null, "El numero de capas solicitadas es mayor al numero de capas existentes");
-                    } else {
-                        switch(comboTipoRecorrido.getSelectedIndex()) {
-                            case 0:
-                                manejadorPrincipal.getArbolCapas().llenarListaDoble(listaCapasGraficar, "INORDEN", numeroDeCapas);
-                                break;
-                            case 1:
-                                manejadorPrincipal.getArbolCapas().llenarListaDoble(listaCapasGraficar, "PREORDEN", numeroDeCapas);
-                                break;
-                            case 2:
-                                manejadorPrincipal.getArbolCapas().llenarListaDoble(listaCapasGraficar, "POSTORDEN", numeroDeCapas);
-                                break;
-                        }
-                        ListaDoblementeEnlazada listaCapasEnviar = new ListaDoblementeEnlazada();
-                        for(int i  = 0; i < numeroDeCapas; i++) {
-                            listaCapasEnviar.insertar(listaCapasGraficar.buscar(i));
-                        }
-                        manejadorGraficas.graficarImagen(listaCapasEnviar, jPanel4);
-                    }
-                    
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Revise si la cantidad de capas es correcta");
-                }
-                break;
-            case 1:
-                //Por lista de imagenes
-                NodoListaDobleC imagenAUsar;
-                String idImagen = txtApoyoImagenes.getText();
-                if((imagenAUsar = manejadorPrincipal.getListaImagenes().buscar(idImagen)) != null) {
-                    manejadorGraficas.graficarImagen(imagenAUsar.getListaCapas(), jPanel4);
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se ha encontrado la imagen: " + idImagen);
-                }
-                break;
-            case 2:
-                //Por capa
-                String capaSolicitada = txtApoyoImagenes.getText();
-                NodoAVL capaGraficar;
-                if((capaGraficar = manejadorPrincipal.getArbolCapas().buscar(capaSolicitada)) != null) {
-                    listaCapasGraficar.insertar(capaGraficar);
-                    manejadorGraficas.graficarImagen(listaCapasGraficar, jPanel4);
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se ha encontrado la capa: "  + capaSolicitada);
-                }
-                break;
-            case 3:
-                //Por Lista de Imagenes
-                String usuarioConsultado = txtApoyoImagenes.getText();
-                String imagenConsultada = txtApoyo2.getText();
-                NodoAVL usuario;
-                if((usuario = manejadorPrincipal.getArbolUsuarios().buscar(usuarioConsultado)) != null) {
-                    ListaDobleImg listaImgUser = (ListaDobleImg) usuario.getContenido();
-                    NodoListaDobleC imagen;
-                    if((imagen = listaImgUser.buscar(imagenConsultada)) != null) {
-                        manejadorGraficas.graficarImagen(imagen.getListaCapas(), jPanel4);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "El usuario " + usuarioConsultado + " no posee la imagen: " + imagenConsultada);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se ha encontrado el usuario: " + usuarioConsultado);
-                }
-                break;
-            default:
-                break;
-        }
-    }//GEN-LAST:event_btnGenerarImagenActionPerformed
+        CreacionImagen creacionImagen = new CreacionImagen(manejadorPrincipal);
+        creacionImagen.setVisible(true);
+//        creacionImagen.setManejadorPrincipal(manejadorPrincipal);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -642,12 +681,18 @@ public class VentanaInicial extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboTipoRecorrido;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

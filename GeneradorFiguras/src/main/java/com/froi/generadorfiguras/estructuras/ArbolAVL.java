@@ -344,4 +344,17 @@ public class ArbolAVL {
         lista.insertar(nodo);
     }
     
+    public void llenarListaDobleList(ListaDoblementeEnlazada listaDoble) {
+        if(raiz != null) {
+            llenarListaDobleList(listaDoble, raiz);
+        }
+    }
+    
+    public void llenarListaDobleList(ListaDoblementeEnlazada listaDoble, NodoAVL nodo) {
+        if(nodo == null) return;
+        llenarListaDobleList(listaDoble, nodo.getIzquierdo());
+        listaDoble.insertar(nodo);
+        llenarListaDobleList(listaDoble, nodo.getDerecha());
+    }
+    
 }

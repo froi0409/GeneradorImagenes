@@ -108,33 +108,71 @@ public class ListaEnlazadaDobleCircular {
         return null;
     }
     
+    public NodoListaDobleC buscar(int posicion) {
+        int cont = 0;
+        if(posicion > tamaño) {
+            throw new IndexOutOfBoundsException("Posicion solicitadaa fuera de limites");
+        }
+        int conta = 0;
+        NodoListaDobleC aux = primero;
+        do {
+            if(conta == posicion) {
+                System.out.println("Nodo encontrado: " + aux.getIdentificador());
+                return aux;
+            }
+            cont++;
+            aux = aux.getSiguiente();
+        } while(aux != primero);
+        return null;
+    }
+    
+    /**
+     * Genera el código .dot para generar la gráfica de la estructura
+     * @return Código .dot que permitirá la creación de una imagen
+     */
     public String dotCode() {
         String codigo = "";
         codigo += "digraph arbol {\n";
-        codigo += "rankdir=TB\n";
         codigo += "node [shape = record]\n";
         codigo += getCodigoNodos();
         codigo += "}\n";
         return codigo;
     }
     
+    /**
+     * Permite obtener el codigo que declara y enlaza los nodos. Todo para graphviz
+     * @return Código .dot que contiene la definición y conexión de nodos
+     */
     private String getCodigoNodos() {
         String codigo = "";
         if(primero != null) {
             NodoListaDobleC aux = primero;
+            int cont = 1;
+            
             do {
-                codigo += "nodo" + aux.getIdentificador() + " [ label =\"" + aux.getIdentificador() + "\"];\n";
+                codigo += "subgraph cluster_" + cont + " {\n";
+                codigo += "nodo" + aux.getIdentificador() + " [ label =\"id: " + aux.getIdentificador() + "\"];\n";
+                codigo += aux.getListaCapas().getDotCode(aux.getIdentificador());
+                codigo += "}\n";
+                cont++;
                 aux = aux.getSiguiente();
             } while (aux != primero);
+            
+            
+            
             aux = primero;
             do {
                 codigo += "nodo" + aux.getIdentificador() +"->nodo" + aux.getSiguiente().getIdentificador() + "\n";
                 codigo += "nodo" + aux.getIdentificador() +"->nodo" + aux.getAnterior().getIdentificador() + "\n";
                 aux = aux.getSiguiente();
             } while (aux != primero);
-            
+
         }
         return codigo;
+    }
+
+    public int getTamaño() {
+        return tamaño;
     }
     
 }

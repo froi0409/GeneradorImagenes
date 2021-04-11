@@ -1,22 +1,24 @@
 digraph arbol {
 rankdir=TB
 node [shape = record]
-nodouserG [ label ="<C0>|userG|<C1>"];
 nodouser8 [ label ="<C0>|user8|<C1>"];
+nodouser2 [ label ="<C0>|user2|<C1>"];
+nodouser1 [ label ="<C0>|user1|<C1>"];
+nodoUserMrM [ label ="UserMrM"];
+nodouser1:C0->nodoUserMrM
+nodouser2:C0->nodouser1
 nodouser6 [ label ="<C0>|user6|<C1>"];
 nodouser4 [ label ="<C0>|user4|<C1>"];
-nodouser2 [ label ="<C0>|user2|<C1>"];
-nodouser1 [ label ="user1"];
-nodouser2:C0->nodouser1
 nodouser3 [ label ="user3"];
-nodouser2:C1->nodouser3
-nodouser4:C0->nodouser2
+nodouser4:C0->nodouser3
 nodouser5 [ label ="user5"];
 nodouser4:C1->nodouser5
 nodouser6:C0->nodouser4
 nodouser7 [ label ="user7"];
 nodouser6:C1->nodouser7
-nodouser8:C0->nodouser6
+nodouser2:C1->nodouser6
+nodouser8:C0->nodouser2
+nodouserG [ label ="<C0>|userG|<C1>"];
 nodouserB [ label ="<C0>|userB|<C1>"];
 nodouser9 [ label ="<C0>|user9|<C1>"];
 nodouserA [ label ="userA"];
@@ -30,8 +32,8 @@ nodouserE [ label ="userE"];
 nodouserF:C0->nodouserE
 nodouserD:C1->nodouserF
 nodouserB:C1->nodouserD
-nodouser8:C1->nodouserB
-nodouserG:C0->nodouser8
+nodouserG:C0->nodouserB
+nodouserO [ label ="<C0>|userO|<C1>"];
 nodouserM [ label ="<C0>|userM|<C1>"];
 nodouserJ [ label ="<C0>|userJ|<C1>"];
 nodouserI [ label ="<C0>|userI|<C1>"];
@@ -43,17 +45,19 @@ nodouserK [ label ="userK"];
 nodouserL:C0->nodouserK
 nodouserJ:C1->nodouserL
 nodouserM:C0->nodouserJ
+nodouserN [ label ="<C0>|userN|<C1>"];
+nodouserMr [ label ="userMr"];
+nodouserN:C0->nodouserMr
+nodouserM:C1->nodouserN
+nodouserO:C0->nodouserM
 nodouserQ [ label ="<C0>|userQ|<C1>"];
-nodouserO [ label ="<C0>|userO|<C1>"];
-nodouserN [ label ="userN"];
-nodouserO:C0->nodouserN
 nodouserP [ label ="userP"];
-nodouserO:C1->nodouserP
-nodouserQ:C0->nodouserO
+nodouserQ:C0->nodouserP
 nodouserR [ label ="<C0>|userR|<C1>"];
 nodouserS [ label ="userS"];
 nodouserR:C1->nodouserS
 nodouserQ:C1->nodouserR
-nodouserM:C1->nodouserQ
-nodouserG:C1->nodouserM
+nodouserO:C1->nodouserQ
+nodouserG:C1->nodouserO
+nodouser8:C1->nodouserG
 }

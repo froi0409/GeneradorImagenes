@@ -90,6 +90,24 @@ public class ListaDoblementeEnlazada {
         return tamaño;
     }
     
-    
+    public String getDotCode(String padre) {
+        String codigo = "";
+        NodoListaDoble aux = primero;
+        while(aux != null) {
+            codigo += "capa" + padre + "o" + aux.getNodoCapa().getIdentificador() + " [ label =\"capa: " + aux.getNodoCapa().getIdentificador() + "\"];\n";
+            aux = aux.getSiguiente();
+        }
+        aux = primero;
+        while(aux != null) {
+            if(aux == primero) {
+                codigo += "nodo" + padre + "->capa" + padre + "o" + aux.getNodoCapa().getIdentificador();
+            } else {
+                codigo += "->capa" + padre + "o" + aux.getNodoCapa().getIdentificador();
+            }
+            aux = aux.getSiguiente();
+        }
+        codigo += "\n";
+        return codigo;
+    }
     
 }
