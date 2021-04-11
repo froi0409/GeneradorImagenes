@@ -50,12 +50,10 @@ nodouserO:C0->nodouserN
 nodouserP [ label ="userP"];
 nodouserO:C1->nodouserP
 nodouserQ:C0->nodouserO
-nodouserS [ label ="<C0>|userS|<C1>"];
-nodouserR [ label ="userR"];
-nodouserS:C0->nodouserR
-nodousuario45 [ label ="usuario45"];
-nodouserS:C1->nodousuario45
-nodouserQ:C1->nodouserS
+nodouserR [ label ="<C0>|userR|<C1>"];
+nodouserS [ label ="userS"];
+nodouserR:C1->nodouserS
+nodouserQ:C1->nodouserR
 nodouserM:C1->nodouserQ
 nodouserG:C1->nodouserM
 }

@@ -13,6 +13,7 @@ import java.awt.GridLayout;
 import java.io.FileWriter;
 import java.io.PrintWriter;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -46,6 +47,7 @@ public class ManejadorGraficas {
             runtime.exec("dot -Tpng " + nomArch  + " -o " + nombreArchivo + ".png");
             System.out.println("dot -Tpng " + nomArch  + " -o " + nombreArchivo + ".png");
             Thread.sleep(500);
+            JOptionPane.showMessageDialog(null, "Imagen Generada en la carpeta del proyecto");
         } catch (Exception e) {
             System.out.println("Error al generar la imagen");
         }

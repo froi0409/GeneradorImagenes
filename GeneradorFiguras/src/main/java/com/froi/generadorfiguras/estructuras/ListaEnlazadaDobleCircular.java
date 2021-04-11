@@ -133,7 +133,10 @@ public class ListaEnlazadaDobleCircular {
     public String dotCode() {
         String codigo = "";
         codigo += "digraph listaDoble {\n";
-        codigo += "node [shape = record]\n";
+        codigo += "node [shape = box]\n";
+        codigo += "edge [dir = both]\n";
+        codigo += "e0[ shape = point, width = 0 ];\n";
+        codigo += "e1[ shape = point, width = 0 ];\n";
         codigo += getCodigoNodos();
         codigo += "}\n";
         return codigo;
@@ -161,12 +164,20 @@ public class ListaEnlazadaDobleCircular {
             
             
             aux = primero;
+            codigo += "rank = same { ";
             do {
-                codigo += "nodo" + aux.getIdentificador() +"->nodo" + aux.getSiguiente().getIdentificador() + "\n";
-                codigo += "nodo" + aux.getIdentificador() +"->nodo" + aux.getAnterior().getIdentificador() + "\n";
+                if(aux == primero) {
+                    codigo += "nodo" + aux.getIdentificador() ;
+                } else {
+                    codigo += "->nodo" + aux.getIdentificador();
+                }
+                if(aux.getSiguiente() == primero) {
+                    codigo += "->nodo" + aux.getSiguiente().getIdentificador();
+                }
+                
                 aux = aux.getSiguiente();
             } while (aux != primero);
-
+            codigo += " };\n";
         }
         return codigo;
     }
