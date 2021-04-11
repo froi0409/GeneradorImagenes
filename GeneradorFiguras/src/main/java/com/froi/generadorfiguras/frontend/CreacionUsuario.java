@@ -6,6 +6,7 @@
 package com.froi.generadorfiguras.frontend;
 
 import com.froi.generadorfiguras.estructuras.ArbolAVL;
+import com.froi.generadorfiguras.estructuras.ListaDobleImg;
 import com.froi.generadorfiguras.nodos.NodoAVL;
 import javax.swing.JOptionPane;
 
@@ -91,7 +92,7 @@ public class CreacionUsuario extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Ingrese un nombre de usuario válido");
         } else {
             try {
-                arbolUsuarios.insertar(new NodoAVL(idUsuario));
+                arbolUsuarios.insertar(new NodoAVL(idUsuario, new ListaDobleImg()));
                 JOptionPane.showMessageDialog(null, "Usuario " + idUsuario + " ingresado con éxito");
                 this.dispose();
             } catch (Exception e) {
