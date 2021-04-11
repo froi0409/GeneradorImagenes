@@ -235,7 +235,7 @@ public class MatrizDispersa {
         String codigo = "";
         codigo += "digraph matriz {\n";
         codigo += "node [shape = box]\n";
-        //codigo += "edge [dir = both]\n";
+        codigo += "edge [dir = both]\n";
         codigo += "e0[ shape = point, width = 0 ];\n";
         codigo += "e1[ shape = point, width = 0 ];\n";
         codigo += getCodigoNodos();
@@ -267,18 +267,18 @@ public class MatrizDispersa {
                 NodoMatriz auxF = aux;
                 while(auxF != null) {
                     String coord = auxF.getX() + "o" + auxF.getY();
-                    if(auxF.getAnteriorColumna() != null) {
-                        String coordAuxF = auxF.getAnteriorColumna().getX() + "o" + auxF.getAnteriorColumna().getY();
-                        codigo += "nodo" + coord +"->nodo" + coordAuxF + "\n";
-                    }
-                    if(auxF.getAnteriorFila() != null){
-                        String coordAuxF = auxF.getAnteriorFila().getX() + "o" + auxF.getAnteriorFila().getY();
-                        codigo += "nodo" + coord +"->nodo" + coordAuxF + "\n";
-                    }
-                    if(auxF.getSiguienteColumna() != null) {
-                        String coordAuxF = auxF.getSiguienteColumna().getX() + "o" + auxF.getSiguienteColumna().getY();
-                        codigo += "nodo" + coord +"->nodo" + coordAuxF + "\n";
-                    }
+//                    if(auxF.getAnteriorColumna() != null) {
+//                        String coordAuxF = auxF.getAnteriorColumna().getX() + "o" + auxF.getAnteriorColumna().getY();
+//                        codigo += "nodo" + coord +"->nodo" + coordAuxF + "\n";
+//                    }
+//                    if(auxF.getAnteriorFila() != null){
+//                        String coordAuxF = auxF.getAnteriorFila().getX() + "o" + auxF.getAnteriorFila().getY();
+//                        codigo += "nodo" + coord +"->nodo" + coordAuxF + "\n";
+//                    }
+//                    if(auxF.getSiguienteColumna() != null) {
+//                        String coordAuxF = auxF.getSiguienteColumna().getX() + "o" + auxF.getSiguienteColumna().getY();
+//                        codigo += "nodo" + coord +"->nodo" + coordAuxF + "\n";
+//                    }
                     if(auxF.getSiguienteFila() != null) {
                         String coordAuxF = auxF.getSiguienteFila().getX() + "o" + auxF.getSiguienteFila().getY();
                         codigo += "nodo" + coord +"->nodo" + coordAuxF + "\n";
@@ -287,9 +287,14 @@ public class MatrizDispersa {
                     auxF = auxF.getSiguienteColumna();
                 }
                 auxF = aux;
-                codigo += "{ rank = same; ";
+                codigo += "rank = same { ";
                 while(auxF != null) {
-                    codigo += "nodo" + auxF.getX() + "o" + auxF.getY() + "; ";
+                    if(auxF == aux) {
+                        codigo += "nodo" + auxF.getX() + "o" + auxF.getY();
+                    } else {
+                        codigo += "->" + "nodo" + auxF.getX() + "o" + auxF.getY();
+                    }
+                    
                     auxF = auxF.getSiguienteColumna();
                 }
                 codigo += " };\n";
