@@ -5,6 +5,9 @@
  */
 package com.froi.generadorfiguras.nodos;
 
+import java.awt.Color;
+import javax.swing.JButton;
+
 /**
  *
  * @author froi-pc
@@ -15,6 +18,7 @@ public class NodoMatriz {
     private NodoMatriz siguienteColumna;
     private NodoMatriz siguienteFila;
     private String info;
+    private JButton boton;
     private int x;
     private int y;
     
@@ -26,6 +30,7 @@ public class NodoMatriz {
         this.anteriorFila = null;
         this.siguienteColumna = null;
         this.siguienteFila = null;
+        this.boton = new JButton();
     }
 
     public NodoMatriz getAnteriorColumna() {
@@ -82,6 +87,14 @@ public class NodoMatriz {
 
     public void setY(int y) {
         this.y = y;
+    }
+
+    public JButton getBoton() {
+        return boton;
+    }
+
+    public void setBoton(JButton boton) {
+        this.boton = boton;
     }
     
     

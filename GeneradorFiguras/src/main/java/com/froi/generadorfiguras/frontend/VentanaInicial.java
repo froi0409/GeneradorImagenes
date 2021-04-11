@@ -5,10 +5,13 @@
  */
 package com.froi.generadorfiguras.frontend;
 
+import com.froi.generadorfiguras.estructuras.ListaDobleImg;
 import com.froi.generadorfiguras.estructuras.ListaDoblementeEnlazada;
 import com.froi.generadorfiguras.estructuras.MatrizDispersa;
 import com.froi.generadorfiguras.manejadores.*;
 import com.froi.generadorfiguras.nodos.NodoAVL;
+import com.froi.generadorfiguras.nodos.NodoListaDobleC;
+import com.froi.generadorfiguras.nodos.NodoListaDobleImg;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -479,6 +482,8 @@ public class VentanaInicial extends javax.swing.JFrame {
 
     private void comboTipoGeneracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoGeneracionActionPerformed
         // TODO add your handling code here:
+        txtApoyoImagenes.setText("");
+        txtApoyo2.setText("");
         switch(comboTipoGeneracion.getSelectedIndex()) {
             case 0:
                 lblDescripcionGraficacion.setText("Numero de Capas a Utilizar: ");
@@ -515,28 +520,76 @@ public class VentanaInicial extends javax.swing.JFrame {
 
     private void btnGenerarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarImagenActionPerformed
         // TODO add your handling code here:
+        ListaDoblementeEnlazada listaCapasGraficar = new ListaDoblementeEnlazada();
+        
         switch(comboTipoGeneracion.getSelectedIndex()) {
             case 0:
                 //Por recorrido limitado
+                try {
+                    String numeroDeCapasS = txtApoyoImagenes.getText();
+                    int numeroDeCapas = Integer.parseInt(numeroDeCapasS);
+                    if(numeroDeCapas > manejadorPrincipal.getArbolCapas().getTamaño()) {
+                        JOptionPane.showMessageDialog(null, "El numero de capas solicitadas es mayor al numero de capas existentes");
+                    } else {
+                        switch(comboTipoRecorrido.getSelectedIndex()) {
+                            case 0:
+                                manejadorPrincipal.getArbolCapas().llenarListaDoble(listaCapasGraficar, "INORDEN", numeroDeCapas);
+                                break;
+                            case 1:
+                                manejadorPrincipal.getArbolCapas().llenarListaDoble(listaCapasGraficar, "PREORDEN", numeroDeCapas);
+                                break;
+                            case 2:
+                                manejadorPrincipal.getArbolCapas().llenarListaDoble(listaCapasGraficar, "POSTORDEN", numeroDeCapas);
+                                break;
+                        }
+                        ListaDoblementeEnlazada listaCapasEnviar = new ListaDoblementeEnlazada();
+                        for(int i  = 0; i < numeroDeCapas; i++) {
+                            listaCapasEnviar.insertar(listaCapasGraficar.buscar(i));
+                        }
+                        manejadorGraficas.graficarImagen(listaCapasEnviar, jPanel4);
+                    }
+                    
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Revise si la cantidad de capas es correcta");
+                }
                 break;
             case 1:
                 //Por lista de imagenes
+                NodoListaDobleC imagenAUsar;
+                String idImagen = txtApoyoImagenes.getText();
+                if((imagenAUsar = manejadorPrincipal.getListaImagenes().buscar(idImagen)) != null) {
+                    manejadorGraficas.graficarImagen(imagenAUsar.getListaCapas(), jPanel4);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se ha encontrado la imagen: " + idImagen);
+                }
                 break;
             case 2:
                 //Por capa
                 String capaSolicitada = txtApoyoImagenes.getText();
                 NodoAVL capaGraficar;
                 if((capaGraficar = manejadorPrincipal.getArbolCapas().buscar(capaSolicitada)) != null) {
-                    ListaDoblementeEnlazada listaCapasGraficar = new ListaDoblementeEnlazada();
                     listaCapasGraficar.insertar(capaGraficar);
                     manejadorGraficas.graficarImagen(listaCapasGraficar, jPanel4);
-                    JOptionPane.showMessageDialog(null, "Capa " + capaSolicitada + " encontrada");
                 } else {
                     JOptionPane.showMessageDialog(null, "No se ha encontrado la capa: "  + capaSolicitada);
                 }
                 break;
             case 3:
                 //Por Lista de Imagenes
+                String usuarioConsultado = txtApoyoImagenes.getText();
+                String imagenConsultada = txtApoyo2.getText();
+                NodoAVL usuario;
+                if((usuario = manejadorPrincipal.getArbolUsuarios().buscar(usuarioConsultado)) != null) {
+                    ListaDobleImg listaImgUser = (ListaDobleImg) usuario.getContenido();
+                    NodoListaDobleC imagen;
+                    if((imagen = listaImgUser.buscar(imagenConsultada)) != null) {
+                        manejadorGraficas.graficarImagen(imagen.getListaCapas(), jPanel4);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "El usuario " + usuarioConsultado + " no posee la imagen: " + imagenConsultada);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se ha encontrado el usuario: " + usuarioConsultado);
+                }
                 break;
             default:
                 break;

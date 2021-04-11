@@ -307,4 +307,41 @@ public class ArbolAVL {
         return codigoNodos;
     }
     
+    public void llenarListaDoble(ListaDoblementeEnlazada lista, String orden, int limite) {
+        if(orden.equals("INORDEN")) {
+            llenarInorden(raiz, lista, 0, limite);
+        } else if(orden.equals("PREORDEN")) {
+            llenarPreorden(raiz, lista, 0, limite);
+        } else if(orden.equals("POSTORDEN")) {
+            llenarPostorden(raiz, lista, 0, limite);
+        }
+    }
+    
+    private void llenarInorden(NodoAVL nodo, ListaDoblementeEnlazada lista, int actual, int limite) {
+        if(nodo == null || actual == limite) return;
+        actual = actual+1;
+        llenarInorden(nodo.getIzquierdo(), lista, actual, limite);
+        lista.insertar(nodo);
+        actual = actual + 1;
+        llenarInorden(nodo.getDerecha(), lista, actual, limite);
+    }
+    
+    private void llenarPreorden(NodoAVL nodo, ListaDoblementeEnlazada lista, int actual, int limite) {
+        if(nodo == null || actual == limite) return;
+        lista.insertar(nodo);
+        actual = actual + 1;
+        llenarPreorden(nodo.getIzquierdo(), lista, actual, limite);
+        actual = actual + 1;
+        llenarPreorden(nodo.getDerecha(), lista, actual, limite);
+    }
+    
+    private void llenarPostorden(NodoAVL nodo, ListaDoblementeEnlazada lista, int actual, int limite) {
+        if(nodo == null || actual == limite) return;
+        actual = actual + 1;
+        llenarPreorden(nodo.getIzquierdo(), lista, actual, limite);
+        actual = actual + 1;
+        llenarPreorden(nodo.getDerecha(), lista, actual, limite);
+        lista.insertar(nodo);
+    }
+    
 }

@@ -7,6 +7,7 @@ package com.froi.generadorfiguras.manejadores;
 
 import com.froi.generadorfiguras.estructuras.ListaDoblementeEnlazada;
 import com.froi.generadorfiguras.estructuras.MatrizDispersa;
+import com.froi.generadorfiguras.nodos.NodoMatriz;
 import java.awt.Color;
 import java.awt.GridLayout;
 import java.io.FileWriter;
@@ -51,6 +52,7 @@ public class ManejadorGraficas {
     }
     
     public void graficarImagen(ListaDoblementeEnlazada listaCapasGraficar, JPanel panelGraficacion) {
+        panelGraficacion.removeAll();
         int x = 0;
         int y = 0;
         for(int i = 0; i < listaCapasGraficar.getTamaño(); i++){
@@ -66,18 +68,41 @@ public class ManejadorGraficas {
             
         }
         System.out.println("El total de columnas es: " + x + ". Y el total de filas es: " + y);
-    
-        JButton matrizBotones[][] = new JButton[y][x];
-        panelGraficacion.setLayout(new GridLayout(y,x));
-
-        for(int i = 0; i < y; i++) {
-            for(int j = 0; j < x; j++) {
-                matrizBotones[i][j] = new JButton("");
-                matrizBotones[i][j].setBounds(20, 10, 360, 360);
-                matrizBotones[i][j].setBackground(Color.red);
-                panelGraficacion.add(matrizBotones[i][j]);
-            }
+        int anchoBtn = panelGraficacion.getWidth() / x;
+        int altoBtn = panelGraficacion.getHeight() / y;
+        
+        for(int capa = 0; capa < listaCapasGraficar.getTamaño(); capa++) {
+            for(int i = 1; i <= x; i++){
+                for(int j = 1; j <= y; j++) {
+                    MatrizDispersa matrizAux = (MatrizDispersa) listaCapasGraficar.buscar(capa).getContenido();
+                    NodoMatriz nodo;
+                    if((nodo = matrizAux.busqueda(i, j)) != null)
+                    {
+                        int xPane = anchoBtn*i - anchoBtn;
+                        int yPane = altoBtn*j - altoBtn;
+                        nodo.getBoton().setBounds(xPane, yPane, anchoBtn, altoBtn);
+                        nodo.getBoton().setBackground(Color.decode(nodo.getInfo()));
+                        nodo.getBoton().setVisible(true);
+                        nodo.getBoton().setEnabled(false);
+                        panelGraficacion.add(nodo.getBoton());
+                    }
+                }
+            } 
         }
+        
+        
+        panelGraficacion.repaint();
+//        JButton matrizBotones[][] = new JButton[y][x];
+//        panelGraficacion.setLayout(new GridLayout(y,x));
+//
+//        for(int i = 0; i < y; i++) {
+//            for(int j = 0; j < x; j++) {
+//                matrizBotones[i][j] = new JButton("");
+//                matrizBotones[i][j].setBounds(20, 10, 360, 360);
+//                matrizBotones[i][j].setBackground(Color.red);
+//                panelGraficacion.add(matrizBotones[i][j]);
+//            }
+//        }
     }
     
 }
