@@ -40,7 +40,7 @@ non terminal TokenMatriz datos_opciones;
 
 start with inicio;
 
-inicio ::=  identificador:id inicio_opciones:matriz inicio
+inicio ::=  inicio identificador:id inicio_opciones:matriz
             {:
                 NodoAVL nuevoNodo = new NodoAVL(id.toString(), matriz);
                 arbolCapas.insertar(nuevoNodo);

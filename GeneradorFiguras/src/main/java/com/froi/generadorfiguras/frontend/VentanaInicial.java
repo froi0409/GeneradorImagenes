@@ -5,10 +5,16 @@
  */
 package com.froi.generadorfiguras.frontend;
 
-import com.froi.generadorfiguras.manejadores.ManejadorArchivos;
-import com.froi.generadorfiguras.manejadores.ManejadorPrincipal;
+import com.froi.generadorfiguras.estructuras.ListaDobleImg;
+import com.froi.generadorfiguras.estructuras.ListaDoblementeEnlazada;
+import com.froi.generadorfiguras.estructuras.MatrizDispersa;
+import com.froi.generadorfiguras.manejadores.*;
+import com.froi.generadorfiguras.nodos.NodoAVL;
+import com.froi.generadorfiguras.nodos.NodoListaDobleC;
+import com.froi.generadorfiguras.nodos.NodoListaDobleImg;
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -19,6 +25,7 @@ public class VentanaInicial extends javax.swing.JFrame {
 
     private ManejadorPrincipal manejadorPrincipal;
     private ManejadorArchivos manejadorArchivos;
+    private ManejadorGraficas manejadorGraficas;
     
     /**
      * Creates new form VentanaInicial
@@ -27,6 +34,11 @@ public class VentanaInicial extends javax.swing.JFrame {
         initComponents();
         this.manejadorPrincipal = new ManejadorPrincipal();
         this.manejadorArchivos = new ManejadorArchivos();
+        this.manejadorGraficas = new ManejadorGraficas();
+        lblBuscar.setVisible(false);
+        lblApoyo2.setVisible(false);
+        txtApoyo2.setVisible(false);
+        txtBuscar.setVisible(false);
     }
 
     /**
@@ -38,7 +50,7 @@ public class VentanaInicial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel3 = new javax.swing.JPanel();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         btnCapas = new javax.swing.JButton();
@@ -50,20 +62,30 @@ public class VentanaInicial extends javax.swing.JFrame {
         txtUsuarios = new javax.swing.JTextArea();
         jScrollPane3 = new javax.swing.JScrollPane();
         txtImagenes = new javax.swing.JTextArea();
+        jPanel5 = new javax.swing.JPanel();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        comboTipoGrafica = new javax.swing.JComboBox<>();
+        btnGraficar = new javax.swing.JButton();
+        txtBuscar = new javax.swing.JTextField();
+        lblBuscar = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 738, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 572, Short.MAX_VALUE)
-        );
+        jLabel2 = new javax.swing.JLabel();
+        comboTipoGeneracion = new javax.swing.JComboBox<>();
+        lblDescripcionGraficacion = new javax.swing.JLabel();
+        txtApoyoImagenes = new javax.swing.JTextField();
+        lblTipoRecorrido = new javax.swing.JLabel();
+        comboTipoRecorrido = new javax.swing.JComboBox<>();
+        btnGenerarImagen = new javax.swing.JButton();
+        lblApoyo2 = new javax.swing.JLabel();
+        txtApoyo2 = new javax.swing.JTextField();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        jMenu1 = new javax.swing.JMenu();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -116,7 +138,7 @@ public class VentanaInicial extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                     .addComponent(btnImagenes, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnUsuarios, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -132,13 +154,86 @@ public class VentanaInicial extends javax.swing.JFrame {
                     .addComponent(btnImagenes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 530, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane3))
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Carga de Archivos", jPanel1);
+
+        jPanel6.setBackground(new java.awt.Color(254, 254, 254));
+        jPanel6.setPreferredSize(new java.awt.Dimension(548, 548));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 548, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jLabel1.setText("Tipo de Grafica");
+
+        comboTipoGrafica.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Lista de Imagenes", "Arbol de Capas", "Capa", "Imagen y Arbol de Capas", "Arbol de Usuarios" }));
+        comboTipoGrafica.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTipoGraficaActionPerformed(evt);
+            }
+        });
+
+        btnGraficar.setText("Graficar");
+        btnGraficar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGraficarActionPerformed(evt);
+            }
+        });
+
+        lblBuscar.setText("Buscar");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboTipoGrafica, 0, 289, Short.MAX_VALUE)
+                    .addComponent(txtBuscar)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(lblBuscar))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(btnGraficar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboTipoGrafica, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnGraficar)
+                        .addGap(0, 427, Short.MAX_VALUE))
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jTabbedPane1.addTab("Estado de Memoria", jPanel5);
 
         jPanel4.setBackground(new java.awt.Color(254, 254, 254));
         jPanel4.setPreferredSize(new java.awt.Dimension(548, 548));
@@ -151,10 +246,37 @@ public class VentanaInicial extends javax.swing.JFrame {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 570, Short.MAX_VALUE)
+            .addGap(0, 591, Short.MAX_VALUE)
         );
 
-        jLabel1.setText("1. Seleccione Usuario:");
+        jLabel2.setText("Tipo de Generación:");
+
+        comboTipoGeneracion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Recorrido Limitado", "Lista de Imagenes", "Capa", "Usuario" }));
+        comboTipoGeneracion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTipoGeneracionActionPerformed(evt);
+            }
+        });
+
+        lblDescripcionGraficacion.setText("Numero de Capas:");
+
+        lblTipoRecorrido.setText("Tipo de Recorrido:");
+
+        comboTipoRecorrido.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Inorden", "Preorden", "Postorden" }));
+        comboTipoRecorrido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboTipoRecorridoActionPerformed(evt);
+            }
+        });
+
+        btnGenerarImagen.setText("Generar Imagen");
+        btnGenerarImagen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGenerarImagenActionPerformed(evt);
+            }
+        });
+
+        lblApoyo2.setText("Id de Imagen:");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -162,8 +284,24 @@ public class VentanaInicial extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 133, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblApoyo2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtApoyo2, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboTipoGeneracion, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(txtApoyoImagenes, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(comboTipoRecorrido, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnGenerarImagen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(lblDescripcionGraficacion, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblTipoRecorrido, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(0, 99, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)))
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -172,20 +310,67 @@ public class VentanaInicial extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 570, Short.MAX_VALUE))
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboTipoGeneracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblDescripcionGraficacion)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtApoyoImagenes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblTipoRecorrido)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboTipoRecorrido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(lblApoyo2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtApoyo2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnGenerarImagen)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Imagenes", jPanel2);
 
+        jMenu1.setText("CRUD");
+
+        jMenu2.setText("Usuario");
+
+        jMenuItem2.setText("Agregar");
+        jMenuItem2.setToolTipText("");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem2);
+
+        jMenu1.add(jMenu2);
+
+        jMenu3.setText("Imagenes");
+
+        jMenuItem1.setText("Agregar");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
+        jMenu1.add(jMenu3);
+
+        jMenuBar1.add(jMenu1);
+
+        setJMenuBar(jMenuBar1);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 875, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -195,27 +380,213 @@ public class VentanaInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapasActionPerformed
+    private void btnGenerarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarImagenActionPerformed
         // TODO add your handling code here:
-        
+        ListaDoblementeEnlazada listaCapasGraficar = new ListaDoblementeEnlazada();
+
+        switch(comboTipoGeneracion.getSelectedIndex()) {
+            case 0:
+            //Por recorrido limitado
+            try {
+                String numeroDeCapasS = txtApoyoImagenes.getText();
+                int numeroDeCapas = Integer.parseInt(numeroDeCapasS);
+                if(numeroDeCapas > manejadorPrincipal.getArbolCapas().getTamaño()) {
+                    JOptionPane.showMessageDialog(null, "El numero de capas solicitadas es mayor al numero de capas existentes");
+                } else {
+                    switch(comboTipoRecorrido.getSelectedIndex()) {
+                        case 0:
+                        manejadorPrincipal.getArbolCapas().llenarListaDoble(listaCapasGraficar, "INORDEN", numeroDeCapas);
+                        break;
+                        case 1:
+                        manejadorPrincipal.getArbolCapas().llenarListaDoble(listaCapasGraficar, "PREORDEN", numeroDeCapas);
+                        break;
+                        case 2:
+                        manejadorPrincipal.getArbolCapas().llenarListaDoble(listaCapasGraficar, "POSTORDEN", numeroDeCapas);
+                        break;
+                    }
+                    ListaDoblementeEnlazada listaCapasEnviar = new ListaDoblementeEnlazada();
+                    for(int i  = 0; i < numeroDeCapas; i++) {
+                        listaCapasEnviar.insertar(listaCapasGraficar.buscar(i));
+                    }
+                    manejadorGraficas.graficarImagen(listaCapasEnviar, jPanel4);
+                }
+
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Revise si la cantidad de capas es correcta");
+            }
+            break;
+            case 1:
+            //Por lista de imagenes
+            NodoListaDobleC imagenAUsar;
+            String idImagen = txtApoyoImagenes.getText();
+            if((imagenAUsar = manejadorPrincipal.getListaImagenes().buscar(idImagen)) != null) {
+                manejadorGraficas.graficarImagen(imagenAUsar.getListaCapas(), jPanel4);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha encontrado la imagen: " + idImagen);
+            }
+            break;
+            case 2:
+            //Por capa
+            String capaSolicitada = txtApoyoImagenes.getText();
+            NodoAVL capaGraficar;
+            if((capaGraficar = manejadorPrincipal.getArbolCapas().buscar(capaSolicitada)) != null) {
+                listaCapasGraficar.insertar(capaGraficar);
+                manejadorGraficas.graficarImagen(listaCapasGraficar, jPanel4);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha encontrado la capa: "  + capaSolicitada);
+            }
+            break;
+            case 3:
+            //Por Lista de Imagenes
+            String usuarioConsultado = txtApoyoImagenes.getText();
+            String imagenConsultada = txtApoyo2.getText();
+            NodoAVL usuario;
+            if((usuario = manejadorPrincipal.getArbolUsuarios().buscar(usuarioConsultado)) != null) {
+                ListaDobleImg listaImgUser = (ListaDobleImg) usuario.getContenido();
+                NodoListaDobleC imagen;
+                if((imagen = listaImgUser.buscar(imagenConsultada)) != null) {
+                    manejadorGraficas.graficarImagen(imagen.getListaCapas(), jPanel4);
+                } else {
+                    JOptionPane.showMessageDialog(null, "El usuario " + usuarioConsultado + " no posee la imagen: " + imagenConsultada);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha encontrado el usuario: " + usuarioConsultado);
+            }
+            break;
+            default:
+            break;
+        }
+    }//GEN-LAST:event_btnGenerarImagenActionPerformed
+
+    private void comboTipoRecorridoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoRecorridoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboTipoRecorridoActionPerformed
+
+    private void comboTipoGeneracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoGeneracionActionPerformed
+        // TODO add your handling code here:
+        txtApoyoImagenes.setText("");
+        txtApoyo2.setText("");
+        switch(comboTipoGeneracion.getSelectedIndex()) {
+            case 0:
+            lblDescripcionGraficacion.setText("Numero de Capas a Utilizar: ");
+            lblApoyo2.setVisible(false);
+            txtApoyo2.setVisible(false);
+            lblTipoRecorrido.setVisible(true);
+            comboTipoRecorrido.setVisible(true);
+            break;
+            case 1:
+            lblDescripcionGraficacion.setText("Id de la Imagen: ");
+            lblApoyo2.setVisible(false);
+            txtApoyo2.setVisible(false);
+            lblTipoRecorrido.setVisible(false);
+            comboTipoRecorrido.setVisible(false);
+            break;
+            case 2:
+            lblDescripcionGraficacion.setText("Id de la Capa: ");
+            lblApoyo2.setVisible(false);
+            txtApoyo2.setVisible(false);
+            lblTipoRecorrido.setVisible(false);
+            comboTipoRecorrido.setVisible(false);
+            break;
+            case 3:
+            lblDescripcionGraficacion.setText("Id del Usuario: ");
+            lblApoyo2.setVisible(true);
+            txtApoyo2.setVisible(true);
+            lblTipoRecorrido.setVisible(false);
+            comboTipoRecorrido.setVisible(false);
+            break;
+            default:
+            break;
+        }
+    }//GEN-LAST:event_comboTipoGeneracionActionPerformed
+
+    private void btnGraficarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGraficarActionPerformed
+        // TODO add your handling code here:
+        switch (comboTipoGrafica.getSelectedIndex()) {
+            case 0:
+                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getListaImagenes().dotCode(), "ListaImagenes", jPanel6);
+                break;
+            case 1:
+                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolCapas().dotCode(), "ArbolCapas", jPanel6);
+                break;
+            case 2:
+                NodoAVL capaBuscada;
+                String capaABuscar = txtBuscar.getText();
+                if((capaBuscada = manejadorPrincipal.getArbolCapas().buscar(capaABuscar)) != null) {
+                    MatrizDispersa matrizObtenida = (MatrizDispersa) capaBuscada.getContenido();
+                    manejadorGraficas.graficarEstadoMemoria(matrizObtenida.dotCode(), "CapaSolicitada", jPanel6);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se encontró la capa " + capaABuscar);
+                }
+                break;
+            case 3:
+                NodoListaDobleC imagen;
+                String imagenSolicitada = txtBuscar.getText();
+                if((imagen = manejadorPrincipal.getListaImagenes().buscar(imagenSolicitada)) != null) {
+                    System.out.println(imagen.dotCode(manejadorPrincipal.getArbolCapas()));
+                    String codigo = imagen.dotCode(manejadorPrincipal.getArbolCapas());
+                    manejadorGraficas.graficarEstadoMemoria(codigo, "ImagenConArbol", jPanel6);
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se ha encontrado la imagen: " + imagenSolicitada);
+                }
+                break;
+            case 4:
+                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolUsuarios().dotCode(), "ArbolUsuarios", jPanel6);
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_btnGraficarActionPerformed
+
+    private void comboTipoGraficaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoGraficaActionPerformed
+        // TODO add your handling code here:
+        switch(comboTipoGrafica.getSelectedIndex()) {
+            case 0:
+            lblBuscar.setVisible(false);
+            txtBuscar.setVisible(false);
+            break;
+            case 1:
+            lblBuscar.setVisible(false);
+            txtBuscar.setVisible(false);
+            break;
+            case 2:
+            lblBuscar.setVisible(true);
+            txtBuscar.setVisible(true);
+            break;
+            case 3:
+            lblBuscar.setVisible(true);
+            txtBuscar.setVisible(true);
+            break;
+            case 4:
+            lblBuscar.setVisible(false);
+            txtBuscar.setVisible(false);
+            break;
+            default:
+            lblBuscar.setVisible(false);
+            txtBuscar.setVisible(false);
+            break;
+        }
+    }//GEN-LAST:event_comboTipoGraficaActionPerformed
+
+    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+        // TODO add your handling code here:
         JFileChooser fileChooser = new JFileChooser();
         //Indicamos que solo podemos seleccionar archivos
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         //Indicamos el filtro .form
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.cap", "cap");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.usr", "usr");
         fileChooser.setFileFilter(filtro);
         //Abrimos el file chooser
         int comprobante = fileChooser.showOpenDialog(fileChooser);
         if(comprobante == JFileChooser.APPROVE_OPTION) {
             File archivo = fileChooser.getSelectedFile();
-            txtCapas.setText("Se seleccionó el archivo a importar\n");
+            txtUsuarios.setText("Se seleccionó el archivo a importar\n");
             //Enviamos a analizar el archivo a importar
-            manejadorArchivos.manejarArchivoCap(archivo, manejadorPrincipal.getArbolCapas());
+            manejadorArchivos.manejarArchivoUsr(archivo, manejadorPrincipal.getArbolUsuarios(), manejadorPrincipal.getListaImagenes());
         } else {
-            txtCapas.setText("Error al seleccionar el archivo a importar\n");
+            txtUsuarios.setText("Error al seleccionar el archivo a importar\n");
         }
-        
-    }//GEN-LAST:event_btnCapasActionPerformed
+    }//GEN-LAST:event_btnUsuariosActionPerformed
 
     private void btnImagenesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImagenesActionPerformed
         // TODO add your handling code here:
@@ -237,25 +608,41 @@ public class VentanaInicial extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnImagenesActionPerformed
 
-    private void btnUsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUsuariosActionPerformed
+    private void btnCapasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCapasActionPerformed
         // TODO add your handling code here:
+
         JFileChooser fileChooser = new JFileChooser();
         //Indicamos que solo podemos seleccionar archivos
         fileChooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
         //Indicamos el filtro .form
-        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.usr", "usr");
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("*.cap", "cap");
         fileChooser.setFileFilter(filtro);
         //Abrimos el file chooser
         int comprobante = fileChooser.showOpenDialog(fileChooser);
         if(comprobante == JFileChooser.APPROVE_OPTION) {
             File archivo = fileChooser.getSelectedFile();
-            txtUsuarios.setText("Se seleccionó el archivo a importar\n");
+            txtCapas.setText("Se seleccionó el archivo a importar\n");
             //Enviamos a analizar el archivo a importar
-            manejadorArchivos.manejarArchivoUsr(archivo, manejadorPrincipal.getArbolUsuarios(), manejadorPrincipal.getListaImagenes());
+            manejadorArchivos.manejarArchivoCap(archivo, manejadorPrincipal.getArbolCapas());
         } else {
-            txtUsuarios.setText("Error al seleccionar el archivo a importar\n");
+            txtCapas.setText("Error al seleccionar el archivo a importar\n");
         }
-    }//GEN-LAST:event_btnUsuariosActionPerformed
+
+    }//GEN-LAST:event_btnCapasActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        CreacionUsuario creacionUsuario = new CreacionUsuario();
+        creacionUsuario.setVisible(true);
+        creacionUsuario.setArbolUsuarios(manejadorPrincipal.getArbolUsuarios());
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        CreacionImagen creacionImagen = new CreacionImagen(manejadorPrincipal);
+        creacionImagen.setVisible(true);
+//        creacionImagen.setManejadorPrincipal(manejadorPrincipal);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -294,17 +681,38 @@ public class VentanaInicial extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCapas;
+    private javax.swing.JButton btnGenerarImagen;
+    private javax.swing.JButton btnGraficar;
     private javax.swing.JButton btnImagenes;
     private javax.swing.JButton btnUsuarios;
+    private javax.swing.JComboBox<String> comboTipoGeneracion;
+    private javax.swing.JComboBox<String> comboTipoGrafica;
+    private javax.swing.JComboBox<String> comboTipoRecorrido;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JLabel lblApoyo2;
+    private javax.swing.JLabel lblBuscar;
+    private javax.swing.JLabel lblDescripcionGraficacion;
+    private javax.swing.JLabel lblTipoRecorrido;
+    private javax.swing.JTextField txtApoyo2;
+    private javax.swing.JTextField txtApoyoImagenes;
+    private javax.swing.JTextField txtBuscar;
     private javax.swing.JTextArea txtCapas;
     private javax.swing.JTextArea txtImagenes;
     private javax.swing.JTextArea txtUsuarios;

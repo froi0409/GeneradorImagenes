@@ -162,14 +162,18 @@ public class ArbolAVL {
         if(raiz == null) {
             return null;
         } 
-        if(parametro.compareTo(nodo.getIdentificador()) == 0) {
-            return nodo;
-        } 
-        if(parametro.compareTo(nodo.getIdentificador()) > 0) {
-            return buscar(parametro, nodo.getDerecha());
-        }
-        if(parametro.compareTo(nodo.getIdentificador()) < 0) {
-            return buscar(parametro, nodo.getIzquierdo());
+        try {
+            if(parametro.compareTo(nodo.getIdentificador()) == 0) {
+                return nodo;
+            } 
+            if(parametro.compareTo(nodo.getIdentificador()) > 0) {
+                return buscar(parametro, nodo.getDerecha());
+            }
+            if(parametro.compareTo(nodo.getIdentificador()) < 0) {
+                return buscar(parametro, nodo.getIzquierdo());
+            }
+        } catch (Exception e) {
+            return null;
         }
         return null;
     }
@@ -268,6 +272,103 @@ public class ArbolAVL {
 
     public int getTamaño() {
         return tamaño;
+    }
+    
+    /**
+     * Permite obtener el codigo .dot que sirve para generar una grafica de graphviz
+     * @return codigo dot
+     */
+    public String dotCode() {
+        String dotCode = "";
+        dotCode += "digraph arbol {\n";
+        dotCode += "rankdir=TB\n";
+        dotCode += "node [shape = record]\n";
+        dotCode += getCodigoNodos(raiz);
+        dotCode += "}\n";
+        return dotCode;
+    }
+    
+    /**
+     * Metodo que nos sirve para hallar las conexiones que cada nodo debe tener
+     * @param nodo Nodo a evaluar
+     * @return DotCode con las declaraciones de nodos y conexiones necesarias
+     */
+    public String getCodigoNodos(NodoAVL nodo) {
+        String codigoNodos = "";
+        if(raiz != null) {
+            if(nodo.getIzquierdo() == null && nodo.getDerecha() == null) {
+                codigoNodos += "nodo" + nodo.getIdentificador() + " [ label =\"" + nodo.getIdentificador() + "\"];\n";
+            } else {
+                codigoNodos += "nodo" + nodo.getIdentificador() + " [ label =\"<C0>|" + nodo.getIdentificador() +"|<C1>\"];\n";
+            }
+            if(nodo.getIzquierdo() != null) {
+                codigoNodos += getCodigoNodos(nodo.getIzquierdo()) + "nodo" + nodo.getIdentificador() +":C0->nodo" + nodo.getIzquierdo().getIdentificador() + "\n";
+            }
+            if(nodo.getDerecha() != null) {
+                codigoNodos += getCodigoNodos(nodo.getDerecha()) + "nodo" + nodo.getIdentificador() +":C1->nodo" + nodo.getDerecha().getIdentificador() + "\n";
+            }
+        }
+        return codigoNodos;
+    }
+    
+    /**
+     * Permite llenar una lista doblemente enlazada en base a un orden establecido
+     * @param lista Lista doblemente enlazada, la cual será llenada
+     * @param orden Orden en el que se llenara la lita
+     * @param limite Cantidad de datos que deberían llenar la lista
+     */
+    public void llenarListaDoble(ListaDoblementeEnlazada lista, String orden, int limite) {
+        if(orden.equals("INORDEN")) {
+            llenarInorden(raiz, lista, 0, limite);
+        } else if(orden.equals("PREORDEN")) {
+            llenarPreorden(raiz, lista, 0, limite);
+        } else if(orden.equals("POSTORDEN")) {
+            llenarPostorden(raiz, lista, 0, limite);
+        }
+    }
+    
+    private void llenarInorden(NodoAVL nodo, ListaDoblementeEnlazada lista, int actual, int limite) {
+        if(nodo == null || actual == limite) return;
+        actual = actual+1;
+        llenarInorden(nodo.getIzquierdo(), lista, actual, limite);
+        lista.insertar(nodo);
+        actual = actual + 1;
+        llenarInorden(nodo.getDerecha(), lista, actual, limite);
+    }
+    
+    private void llenarPreorden(NodoAVL nodo, ListaDoblementeEnlazada lista, int actual, int limite) {
+        if(nodo == null || actual == limite) return;
+        lista.insertar(nodo);
+        actual = actual + 1;
+        llenarPreorden(nodo.getIzquierdo(), lista, actual, limite);
+        actual = actual + 1;
+        llenarPreorden(nodo.getDerecha(), lista, actual, limite);
+    }
+    
+    private void llenarPostorden(NodoAVL nodo, ListaDoblementeEnlazada lista, int actual, int limite) {
+        if(nodo == null || actual == limite) return;
+        actual = actual + 1;
+        llenarPreorden(nodo.getIzquierdo(), lista, actual, limite);
+        actual = actual + 1;
+        llenarPreorden(nodo.getDerecha(), lista, actual, limite);
+        lista.insertar(nodo);
+    }
+    
+    public void llenarListaDobleList(ListaDoblementeEnlazada listaDoble) {
+        if(raiz != null) {
+            llenarListaDobleList(listaDoble, raiz);
+        }
+    }
+    
+    public void llenarListaDobleList(ListaDoblementeEnlazada listaDoble, NodoAVL nodo) {
+        if(nodo == null) return;
+        llenarListaDobleList(listaDoble, nodo.getIzquierdo());
+        listaDoble.insertar(nodo);
+        llenarListaDobleList(listaDoble, nodo.getDerecha());
+    }
+    
+    public NodoAVL getRaiz() {
+        return raiz;
     }
     
 }

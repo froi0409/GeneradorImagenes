@@ -35,7 +35,7 @@ public class ManejadorArchivos {
         } catch (Exception e) {
             System.out.println("Error al analizar el codigo de capas: " + e.getMessage());
         }
-        arbolCapas.imprimirArbol();
+        System.out.println(arbolCapas.dotCode());
     }
     
     public void manejarArchivoIm(File archivoEntrada, ListaEnlazadaDobleCircular listaImagenes, ArbolAVL arbolCapas) {

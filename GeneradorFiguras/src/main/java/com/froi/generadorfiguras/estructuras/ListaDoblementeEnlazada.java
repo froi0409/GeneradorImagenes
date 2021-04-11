@@ -55,6 +55,27 @@ public class ListaDoblementeEnlazada {
         return null;
     }
     
+    /**
+     * Permite buscar un nodo por posicion
+     * @param posicion posicion en la que se encuentra el nodo
+     * @return NodoAVL que se encuentra en la posicion solicitada
+     */
+    public NodoAVL buscar(int posicion) {
+        if(posicion > tamaño) {
+            throw new IndexOutOfBoundsException("Posición solicitada fuera de limites");
+        }
+        int cont = 0;
+        NodoListaDoble aux = primero;
+        while(aux != null) {
+            if(cont == posicion) {
+                return aux.getNodoCapa();
+            }
+            cont++;
+            aux = aux.getSiguiente();
+        }
+        return null;
+    }
+    
     public void imprimirLista() {
         if(primero != null) {
             NodoListaDoble aux = primero;
@@ -63,6 +84,62 @@ public class ListaDoblementeEnlazada {
                 aux = aux.getSiguiente();
             }
         }
+    }
+
+    public int getTamaño() {
+        return tamaño;
+    }
+    
+    public String getDotCode(String padre) {
+        String codigo = "";
+        NodoListaDoble aux = primero;
+        while(aux != null) {
+            codigo += "capa" + padre + "o" + aux.getNodoCapa().getIdentificador() + " [ label =\"capa: " + aux.getNodoCapa().getIdentificador() + "\"];\n";
+            aux = aux.getSiguiente();
+        }
+        aux = primero;
+        while(aux != null) {
+            if(aux == primero) {
+                codigo += "nodo" + padre + "->capa" + padre + "o" + aux.getNodoCapa().getIdentificador();
+            } else {
+                codigo += "->capa" + padre + "o" + aux.getNodoCapa().getIdentificador();
+            }
+            aux = aux.getSiguiente();
+        }
+        codigo += "\n";
+        return codigo;
+    }
+    
+    public String getDotCodeArbol(String padre, ArbolAVL arbolCapas) {
+        String codigo = "";
+        codigo += "subgraph cluster_1 {\n";
+        codigo += arbolCapas.getCodigoNodos(arbolCapas.getRaiz());
+        codigo += "color=\"White\";\n";
+        codigo += "}\n";
+        codigo += "subgraph cluster_2 {\n";
+        NodoListaDoble aux = primero;
+        while(aux != null) {
+            codigo += "capa" + padre + "o" + aux.getNodoCapa().getIdentificador() + " [ label =\"capa: " + aux.getNodoCapa().getIdentificador() + "\"];\n";
+            aux = aux.getSiguiente();
+        }
+        aux = primero;
+        while(aux != null) {
+            if(aux == primero) {
+                codigo += "nodoIm" + padre + "->capa" + padre + "o" + aux.getNodoCapa().getIdentificador();
+            } else {
+                codigo += "->capa" + padre + "o" + aux.getNodoCapa().getIdentificador();
+            }
+            aux = aux.getSiguiente();
+        }
+        codigo += "\n";
+        codigo += "}\n";
+        
+        aux = primero;
+        while(aux != null) {
+            codigo += "capa" + padre + "o" + aux.getNodoCapa().getIdentificador() + "->nodo" + aux.getNodoCapa().getIdentificador() + "\n";
+            aux = aux.getSiguiente();
+        }
+        return codigo;
     }
     
 }
