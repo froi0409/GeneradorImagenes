@@ -235,6 +235,7 @@ public class MatrizDispersa {
         String codigo = "";
         codigo += "digraph matriz {\n";
         codigo += "node [shape = box]\n";
+        //codigo += "edge [dir = both]\n";
         codigo += "e0[ shape = point, width = 0 ];\n";
         codigo += "e1[ shape = point, width = 0 ];\n";
         codigo += getCodigoNodos();

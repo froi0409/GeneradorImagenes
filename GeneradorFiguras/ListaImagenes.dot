@@ -1,4 +1,4 @@
-digraph arbol {
+digraph listaDoble {
 node [shape = record]
 subgraph cluster_1 {
 nodo1 [ label ="id: 1"];
@@ -30,21 +30,12 @@ capa5o4 [ label ="capa: 4"];
 capa5o5 [ label ="capa: 5"];
 nodo5->capa5o1->capa5o2->capa5o3->capa5o4->capa5o5
 }
-subgraph cluster_5 {
-nodo9 [ label ="id: 9"];
-capa9o2 [ label ="capa: 2"];
-capa9o3 [ label ="capa: 3"];
-capa9o7 [ label ="capa: 7"];
-nodo9->capa9o2->capa9o3->capa9o7
-}
 nodo1->nodo2
-nodo1->nodo9
+nodo1->nodo5
 nodo2->nodo4
 nodo2->nodo1
 nodo4->nodo5
 nodo4->nodo2
-nodo5->nodo9
+nodo5->nodo1
 nodo5->nodo4
-nodo9->nodo1
-nodo9->nodo5
 }

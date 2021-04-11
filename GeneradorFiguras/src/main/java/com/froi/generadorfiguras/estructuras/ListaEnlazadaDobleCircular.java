@@ -132,7 +132,7 @@ public class ListaEnlazadaDobleCircular {
      */
     public String dotCode() {
         String codigo = "";
-        codigo += "digraph arbol {\n";
+        codigo += "digraph listaDoble {\n";
         codigo += "node [shape = record]\n";
         codigo += getCodigoNodos();
         codigo += "}\n";
@@ -143,7 +143,7 @@ public class ListaEnlazadaDobleCircular {
      * Permite obtener el codigo que declara y enlaza los nodos. Todo para graphviz
      * @return Código .dot que contiene la definición y conexión de nodos
      */
-    private String getCodigoNodos() {
+    public String getCodigoNodos() {
         String codigo = "";
         if(primero != null) {
             NodoListaDobleC aux = primero;
@@ -170,7 +170,7 @@ public class ListaEnlazadaDobleCircular {
         }
         return codigo;
     }
-
+    
     public int getTamaño() {
         return tamaño;
     }

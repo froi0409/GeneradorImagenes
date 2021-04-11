@@ -504,28 +504,37 @@ public class VentanaInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
         switch (comboTipoGrafica.getSelectedIndex()) {
             case 0:
-            manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getListaImagenes().dotCode(), "ListaImagenes");
-            break;
+                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getListaImagenes().dotCode(), "ListaImagenes");
+                break;
             case 1:
-            manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolCapas().dotCode(), "ArbolCapas");
-            break;
+                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolCapas().dotCode(), "ArbolCapas");
+                break;
             case 2:
-            NodoAVL capaBuscada;
-            String capaABuscar = txtBuscar.getText();
-            if((capaBuscada = manejadorPrincipal.getArbolCapas().buscar(capaABuscar)) != null) {
-                MatrizDispersa matrizObtenida = (MatrizDispersa) capaBuscada.getContenido();
-                manejadorGraficas.graficarEstadoMemoria(matrizObtenida.dotCode(), "CapaSolicitada");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se encontró la capa " + capaABuscar);
-            }
-            break;
+                NodoAVL capaBuscada;
+                String capaABuscar = txtBuscar.getText();
+                if((capaBuscada = manejadorPrincipal.getArbolCapas().buscar(capaABuscar)) != null) {
+                    MatrizDispersa matrizObtenida = (MatrizDispersa) capaBuscada.getContenido();
+                    manejadorGraficas.graficarEstadoMemoria(matrizObtenida.dotCode(), "CapaSolicitada");
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se encontró la capa " + capaABuscar);
+                }
+                break;
             case 3:
-            break;
+                NodoListaDobleC imagen;
+                String imagenSolicitada = txtBuscar.getText();
+                if((imagen = manejadorPrincipal.getListaImagenes().buscar(imagenSolicitada)) != null) {
+                    System.out.println(imagen.dotCode(manejadorPrincipal.getArbolCapas()));
+                    String codigo = imagen.dotCode(manejadorPrincipal.getArbolCapas());
+                    manejadorGraficas.graficarEstadoMemoria(codigo, "ImagenConArbol");
+                } else {
+                    JOptionPane.showMessageDialog(null, "No se ha encontrado la imagen: " + imagenSolicitada);
+                }
+                break;
             case 4:
-            manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolUsuarios().dotCode(), "ArbolUsuarios");
-            break;
+                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolUsuarios().dotCode(), "ArbolUsuarios");
+                break;
             default:
-            break;
+                break;
         }
     }//GEN-LAST:event_btnGraficarActionPerformed
 

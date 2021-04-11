@@ -110,4 +110,36 @@ public class ListaDoblementeEnlazada {
         return codigo;
     }
     
+    public String getDotCodeArbol(String padre, ArbolAVL arbolCapas) {
+        String codigo = "";
+        codigo += "subgraph cluster_1 {\n";
+        codigo += arbolCapas.getCodigoNodos(arbolCapas.getRaiz());
+        codigo += "color=\"White\";\n";
+        codigo += "}\n";
+        codigo += "subgraph cluster_2 {\n";
+        NodoListaDoble aux = primero;
+        while(aux != null) {
+            codigo += "capa" + padre + "o" + aux.getNodoCapa().getIdentificador() + " [ label =\"capa: " + aux.getNodoCapa().getIdentificador() + "\"];\n";
+            aux = aux.getSiguiente();
+        }
+        aux = primero;
+        while(aux != null) {
+            if(aux == primero) {
+                codigo += "nodoIm" + padre + "->capa" + padre + "o" + aux.getNodoCapa().getIdentificador();
+            } else {
+                codigo += "->capa" + padre + "o" + aux.getNodoCapa().getIdentificador();
+            }
+            aux = aux.getSiguiente();
+        }
+        codigo += "\n";
+        codigo += "}\n";
+        
+        aux = primero;
+        while(aux != null) {
+            codigo += "capa" + padre + "o" + aux.getNodoCapa().getIdentificador() + "->nodo" + aux.getNodoCapa().getIdentificador() + "\n";
+            aux = aux.getSiguiente();
+        }
+        return codigo;
+    }
+    
 }

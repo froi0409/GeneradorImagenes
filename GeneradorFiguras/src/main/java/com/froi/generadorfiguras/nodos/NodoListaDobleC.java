@@ -5,6 +5,7 @@
  */
 package com.froi.generadorfiguras.nodos;
 
+import com.froi.generadorfiguras.estructuras.ArbolAVL;
 import com.froi.generadorfiguras.estructuras.ListaDoblementeEnlazada;
 
 /**
@@ -61,6 +62,16 @@ public class NodoListaDobleC {
 
     public void setAnterior(NodoListaDobleC anterior) {
         this.anterior = anterior;
+    }
+    
+    public String dotCode(ArbolAVL arbolCapas) {
+        String codigo = "";
+        codigo += "digraph listaDoble {\n";
+        codigo += "rankdir=TB\n";
+        codigo += "node [shape = record]\n";
+        codigo += listaCapas.getDotCodeArbol(identificador, arbolCapas);
+        codigo += "}\n";
+        return codigo;
     }
     
 }

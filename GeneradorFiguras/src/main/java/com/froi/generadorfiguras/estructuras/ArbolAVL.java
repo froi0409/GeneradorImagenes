@@ -274,6 +274,10 @@ public class ArbolAVL {
         return tamaño;
     }
     
+    /**
+     * Permite obtener el codigo .dot que sirve para generar una grafica de graphviz
+     * @return codigo dot
+     */
     public String dotCode() {
         String dotCode = "";
         dotCode += "digraph arbol {\n";
@@ -289,7 +293,7 @@ public class ArbolAVL {
      * @param nodo Nodo a evaluar
      * @return DotCode con las declaraciones de nodos y conexiones necesarias
      */
-    private String getCodigoNodos(NodoAVL nodo) {
+    public String getCodigoNodos(NodoAVL nodo) {
         String codigoNodos = "";
         if(raiz != null) {
             if(nodo.getIzquierdo() == null && nodo.getDerecha() == null) {
@@ -307,6 +311,12 @@ public class ArbolAVL {
         return codigoNodos;
     }
     
+    /**
+     * Permite llenar una lista doblemente enlazada en base a un orden establecido
+     * @param lista Lista doblemente enlazada, la cual será llenada
+     * @param orden Orden en el que se llenara la lita
+     * @param limite Cantidad de datos que deberían llenar la lista
+     */
     public void llenarListaDoble(ListaDoblementeEnlazada lista, String orden, int limite) {
         if(orden.equals("INORDEN")) {
             llenarInorden(raiz, lista, 0, limite);
@@ -355,6 +365,10 @@ public class ArbolAVL {
         llenarListaDobleList(listaDoble, nodo.getIzquierdo());
         listaDoble.insertar(nodo);
         llenarListaDobleList(listaDoble, nodo.getDerecha());
+    }
+    
+    public NodoAVL getRaiz() {
+        return raiz;
     }
     
 }
