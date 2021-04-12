@@ -89,9 +89,9 @@ public class ManejadorGraficas {
                     NodoMatriz nodo;
                     if((nodo = matrizAux.busqueda(i, j)) != null)
                     {
-                        int xPane = anchoBtn*i - anchoBtn;
-                        int yPane = altoBtn*j - altoBtn;
-                        nodo.getBoton().setBounds(xPane, yPane, anchoBtn, altoBtn);
+                        int xPane = 20*i - 20;
+                        int yPane = 20*j - 20;
+                        nodo.getBoton().setBounds(xPane, yPane, 20, 20);
                         nodo.getBoton().setBackground(Color.decode(nodo.getInfo()));
                         nodo.getBoton().setVisible(true);
                         nodo.getBoton().setEnabled(false);
@@ -100,9 +100,9 @@ public class ManejadorGraficas {
                 }
             } 
         }
-        
-        
         panelGraficacion.repaint();
+        panelGraficacion.setPreferredSize(new Dimension(20*x, 20*y));
+        
 //        JButton matrizBotones[][] = new JButton[y][x];
 //        panelGraficacion.setLayout(new GridLayout(y,x));
 //
