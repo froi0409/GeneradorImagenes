@@ -1,0 +1,21 @@
+digraph arbol {
+rankdir=TB
+node [shape = record]
+nodo4 [ label ="<C0>|4|<C1>"];
+nodo2 [ label ="<C0>|2|<C1>"];
+nodo1 [ label ="1"];
+nodo2:C0->nodo1
+nodo3 [ label ="3"];
+nodo2:C1->nodo3
+nodo4:C0->nodo2
+nodo6 [ label ="<C0>|6|<C1>"];
+nodo5 [ label ="5"];
+nodo6:C0->nodo5
+nodo8 [ label ="<C0>|8|<C1>"];
+nodo7 [ label ="7"];
+nodo8:C0->nodo7
+nodo9 [ label ="9"];
+nodo8:C1->nodo9
+nodo6:C1->nodo8
+nodo4:C1->nodo6
+}

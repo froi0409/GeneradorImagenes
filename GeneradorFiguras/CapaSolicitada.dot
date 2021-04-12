@@ -1,0 +1,56 @@
+digraph matriz {
+node [shape = box]
+edge [dir = both]
+e0[ shape = point, width = 0 ];
+e1[ shape = point, width = 0 ];
+subgraph cluster_1 {
+nodo0o0 [ label ="nodoI", width = 1.5, style = filled, group = 1 ];
+nodo0o1 [ label ="1", width = 1.5, style = filled, group = 1 ];
+nodo0o2 [ label ="2", width = 1.5, style = filled, group = 1 ];
+nodo0o3 [ label ="3", width = 1.5, style = filled, group = 1 ];
+nodo0o5 [ label ="5", width = 1.5, style = filled, group = 1 ];
+nodo0o500 [ label ="500", width = 1.5, style = filled, group = 1 ];
+color="White";
+}
+subgraph cluster_2 {
+nodo1o0 [ label ="1", width = 1.5, style = filled, group = 2 ];
+nodo1o1 [ label ="#01DF01", width = 1.5, style = filled, group = 2 ];
+color="White";
+}
+subgraph cluster_3 {
+nodo2o0 [ label ="2", width = 1.5, style = filled, group = 3 ];
+nodo2o500 [ label ="#01DF01", width = 1.5, style = filled, group = 3 ];
+color="White";
+}
+subgraph cluster_4 {
+nodo5o0 [ label ="5", width = 1.5, style = filled, group = 4 ];
+nodo5o5 [ label ="#01DF01", width = 1.5, style = filled, group = 4 ];
+color="White";
+}
+subgraph cluster_5 {
+nodo20o0 [ label ="20", width = 1.5, style = filled, group = 5 ];
+nodo20o2 [ label ="#01DF01", width = 1.5, style = filled, group = 5 ];
+color="White";
+}
+subgraph cluster_6 {
+nodo100o0 [ label ="100", width = 1.5, style = filled, group = 6 ];
+nodo100o3 [ label ="#01DF01", width = 1.5, style = filled, group = 6 ];
+color="White";
+}
+nodo0o0->nodo0o1
+nodo1o0->nodo1o1
+nodo2o0->nodo2o500
+nodo5o0->nodo5o5
+nodo20o0->nodo20o2
+nodo100o0->nodo100o3
+rank = same { nodo0o0->nodo1o0->nodo2o0->nodo5o0->nodo20o0->nodo100o0 };
+nodo0o1->nodo0o2
+rank = same { nodo0o1->nodo1o1 };
+nodo0o2->nodo0o3
+rank = same { nodo0o2->nodo20o2 };
+nodo0o3->nodo0o5
+rank = same { nodo0o3->nodo100o3 };
+nodo0o5->nodo0o500
+rank = same { nodo0o5->nodo5o5 };
+rank = same { nodo0o500->nodo2o500 };
+}

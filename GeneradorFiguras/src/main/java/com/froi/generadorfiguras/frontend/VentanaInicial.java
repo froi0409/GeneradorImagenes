@@ -39,6 +39,7 @@ public class VentanaInicial extends javax.swing.JFrame {
         lblApoyo2.setVisible(false);
         txtApoyo2.setVisible(false);
         txtBuscar.setVisible(false);
+        //jScrollPane4.setViewportView(jPanel4);
     }
 
     /**
@@ -63,14 +64,13 @@ public class VentanaInicial extends javax.swing.JFrame {
         jScrollPane3 = new javax.swing.JScrollPane();
         txtImagenes = new javax.swing.JTextArea();
         jPanel5 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         comboTipoGrafica = new javax.swing.JComboBox<>();
         btnGraficar = new javax.swing.JButton();
         txtBuscar = new javax.swing.JTextField();
         lblBuscar = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         comboTipoGeneracion = new javax.swing.JComboBox<>();
         lblDescripcionGraficacion = new javax.swing.JLabel();
@@ -80,6 +80,8 @@ public class VentanaInicial extends javax.swing.JFrame {
         btnGenerarImagen = new javax.swing.JButton();
         lblApoyo2 = new javax.swing.JLabel();
         txtApoyo2 = new javax.swing.JTextField();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jPanel4 = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -154,27 +156,13 @@ public class VentanaInicial extends javax.swing.JFrame {
                     .addComponent(btnImagenes))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 551, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
                     .addComponent(jScrollPane2)
                     .addComponent(jScrollPane3))
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Carga de Archivos", jPanel1);
-
-        jPanel6.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel6.setPreferredSize(new java.awt.Dimension(548, 548));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 548, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
 
         jLabel1.setText("Tipo de Grafica");
 
@@ -193,6 +181,20 @@ public class VentanaInicial extends javax.swing.JFrame {
         });
 
         lblBuscar.setText("Buscar");
+
+        jPanel6.setBackground(new java.awt.Color(254, 254, 254));
+        jPanel6.setPreferredSize(new java.awt.Dimension(548, 548));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 548, Short.MAX_VALUE)
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 615, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -218,6 +220,7 @@ public class VentanaInicial extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -228,26 +231,11 @@ public class VentanaInicial extends javax.swing.JFrame {
                         .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnGraficar)
-                        .addGap(0, 427, Short.MAX_VALUE))
-                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE))
+                        .addGap(0, 451, Short.MAX_VALUE)))
                 .addContainerGap())
         );
 
         jTabbedPane1.addTab("Estado de Memoria", jPanel5);
-
-        jPanel4.setBackground(new java.awt.Color(254, 254, 254));
-        jPanel4.setPreferredSize(new java.awt.Dimension(548, 548));
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 548, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 591, Short.MAX_VALUE)
-        );
 
         jLabel2.setText("Tipo de Generación:");
 
@@ -278,6 +266,22 @@ public class VentanaInicial extends javax.swing.JFrame {
 
         lblApoyo2.setText("Id de Imagen:");
 
+        jPanel4.setBackground(new java.awt.Color(254, 254, 254));
+        jPanel4.setPreferredSize(new java.awt.Dimension(548, 548));
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 548, Short.MAX_VALUE)
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 613, Short.MAX_VALUE)
+        );
+
+        jScrollPane4.setViewportView(jPanel4);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -285,24 +289,20 @@ public class VentanaInicial extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(comboTipoGeneracion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtApoyoImagenes)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblApoyo2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtApoyo2, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboTipoGeneracion, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtApoyoImagenes, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(comboTipoRecorrido, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnGenerarImagen, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(lblDescripcionGraficacion, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblTipoRecorrido, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(0, 99, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)))
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblDescripcionGraficacion)
+                            .addComponent(lblTipoRecorrido)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblApoyo2))
+                        .addGap(0, 35, Short.MAX_VALUE))
+                    .addComponent(comboTipoRecorrido, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtApoyo2)
+                    .addComponent(btnGenerarImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 550, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -310,7 +310,7 @@ public class VentanaInicial extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 591, Short.MAX_VALUE)
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 615, Short.MAX_VALUE)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -380,6 +380,20 @@ public class VentanaInicial extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        CreacionUsuario creacionUsuario = new CreacionUsuario();
+        creacionUsuario.setVisible(true);
+        creacionUsuario.setArbolUsuarios(manejadorPrincipal.getArbolUsuarios());
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        CreacionImagen creacionImagen = new CreacionImagen(manejadorPrincipal);
+        creacionImagen.setVisible(true);
+//        creacionImagen.setManejadorPrincipal(manejadorPrincipal);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     private void btnGenerarImagenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGenerarImagenActionPerformed
         // TODO add your handling code here:
         ListaDoblementeEnlazada listaCapasGraficar = new ListaDoblementeEnlazada();
@@ -406,6 +420,7 @@ public class VentanaInicial extends javax.swing.JFrame {
                     }
                     ListaDoblementeEnlazada listaCapasEnviar = new ListaDoblementeEnlazada();
                     for(int i  = 0; i < numeroDeCapas; i++) {
+                        System.out.println("se enviará la capa: " + listaCapasGraficar.buscar(i).getIdentificador() + " de " + listaCapasGraficar.getTamaño());
                         listaCapasEnviar.insertar(listaCapasGraficar.buscar(i));
                     }
                     manejadorGraficas.graficarImagen(listaCapasEnviar, jPanel4);
@@ -456,6 +471,7 @@ public class VentanaInicial extends javax.swing.JFrame {
             default:
             break;
         }
+        jScrollPane4.updateUI();
     }//GEN-LAST:event_btnGenerarImagenActionPerformed
 
     private void comboTipoRecorridoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboTipoRecorridoActionPerformed
@@ -504,37 +520,37 @@ public class VentanaInicial extends javax.swing.JFrame {
         // TODO add your handling code here:
         switch (comboTipoGrafica.getSelectedIndex()) {
             case 0:
-                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getListaImagenes().dotCode(), "ListaImagenes", jPanel6);
-                break;
+            manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getListaImagenes().dotCode(), "ListaImagenes", jPanel6);
+            break;
             case 1:
-                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolCapas().dotCode(), "ArbolCapas", jPanel6);
-                break;
+            manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolCapas().dotCode(), "ArbolCapas", jPanel6);
+            break;
             case 2:
-                NodoAVL capaBuscada;
-                String capaABuscar = txtBuscar.getText();
-                if((capaBuscada = manejadorPrincipal.getArbolCapas().buscar(capaABuscar)) != null) {
-                    MatrizDispersa matrizObtenida = (MatrizDispersa) capaBuscada.getContenido();
-                    manejadorGraficas.graficarEstadoMemoria(matrizObtenida.dotCode(), "CapaSolicitada", jPanel6);
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se encontró la capa " + capaABuscar);
-                }
-                break;
+            NodoAVL capaBuscada;
+            String capaABuscar = txtBuscar.getText();
+            if((capaBuscada = manejadorPrincipal.getArbolCapas().buscar(capaABuscar)) != null) {
+                MatrizDispersa matrizObtenida = (MatrizDispersa) capaBuscada.getContenido();
+                manejadorGraficas.graficarEstadoMemoria(matrizObtenida.dotCode(), "CapaSolicitada", jPanel6);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se encontró la capa " + capaABuscar);
+            }
+            break;
             case 3:
-                NodoListaDobleC imagen;
-                String imagenSolicitada = txtBuscar.getText();
-                if((imagen = manejadorPrincipal.getListaImagenes().buscar(imagenSolicitada)) != null) {
-                    System.out.println(imagen.dotCode(manejadorPrincipal.getArbolCapas()));
-                    String codigo = imagen.dotCode(manejadorPrincipal.getArbolCapas());
-                    manejadorGraficas.graficarEstadoMemoria(codigo, "ImagenConArbol", jPanel6);
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se ha encontrado la imagen: " + imagenSolicitada);
-                }
-                break;
+            NodoListaDobleC imagen;
+            String imagenSolicitada = txtBuscar.getText();
+            if((imagen = manejadorPrincipal.getListaImagenes().buscar(imagenSolicitada)) != null) {
+                System.out.println(imagen.dotCode(manejadorPrincipal.getArbolCapas()));
+                String codigo = imagen.dotCode(manejadorPrincipal.getArbolCapas());
+                manejadorGraficas.graficarEstadoMemoria(codigo, "ImagenConArbol", jPanel6);
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha encontrado la imagen: " + imagenSolicitada);
+            }
+            break;
             case 4:
-                manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolUsuarios().dotCode(), "ArbolUsuarios", jPanel6);
-                break;
+            manejadorGraficas.graficarEstadoMemoria(manejadorPrincipal.getArbolUsuarios().dotCode(), "ArbolUsuarios", jPanel6);
+            break;
             default:
-                break;
+            break;
         }
     }//GEN-LAST:event_btnGraficarActionPerformed
 
@@ -627,22 +643,7 @@ public class VentanaInicial extends javax.swing.JFrame {
         } else {
             txtCapas.setText("Error al seleccionar el archivo a importar\n");
         }
-
     }//GEN-LAST:event_btnCapasActionPerformed
-
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-        CreacionUsuario creacionUsuario = new CreacionUsuario();
-        creacionUsuario.setVisible(true);
-        creacionUsuario.setArbolUsuarios(manejadorPrincipal.getArbolUsuarios());
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        CreacionImagen creacionImagen = new CreacionImagen(manejadorPrincipal);
-        creacionImagen.setVisible(true);
-//        creacionImagen.setManejadorPrincipal(manejadorPrincipal);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -705,6 +706,7 @@ public class VentanaInicial extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel lblApoyo2;
     private javax.swing.JLabel lblBuscar;
